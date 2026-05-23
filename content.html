@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Content - Nundresh Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div id="page-loader" class="loading-overlay show"><div class="spinner"></div></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand"><div class="brand-icon">❄</div><span>Nundresh Admin</span></a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-label">Management</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="inquiries.html" class="nav-link"><i data-lucide="inbox"></i><span>Inquiries</span></a></li>
+                <li class="nav-item"><a href="content.html" class="nav-link active"><i data-lucide="file-edit"></i><span>Website Content</span></a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link"><i data-lucide="info"></i><span>About Page</span></a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link"><i data-lucide="image"></i><span>Gallery</span></a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link"><i data-lucide="package"></i><span>Services</span></a></li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-info"><div class="user-email" id="admin-user-email">loading...</div></div>
+            <button class="logout-btn" id="logout-btn"><i data-lucide="log-out"></i></button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <div>
+                <h1>Website Content</h1>
+                <p>Edit the text and information shown on your live website.</p>
+            </div>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle"><i data-lucide="menu"></i></button>
+        </div>
+
+        <div class="toast-container" id="toast-container"></div>
+
+        <!-- Homepage Hero -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>Homepage Hero Section</h2></div>
+            <div class="settings-body">
+                <form id="form-home">
+                    <div class="form-group">
+                        <label class="form-label">Hero Tag (Top small line)</label>
+                        <input type="text" id="home_tag" class="form-control" placeholder="Kashmir · Established 2008">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hero Title (Line 1)</label>
+                        <input type="text" id="home_title1" class="form-control" placeholder="The cold that keeps">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hero Title (Line 2)</label>
+                        <input type="text" id="home_title2" class="form-control" placeholder="Kashmir crisp.">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Subtitle</label>
+                        <input type="text" id="home_subtitle" class="form-control" placeholder="Engineered for Kashmir's finest apple harvest.">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea id="home_desc" class="form-control" placeholder="Precision temperature control..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hero Video URL (Cloudinary)</label>
+                        <input type="text" id="home_video_url" class="form-control" placeholder="Paste your Cloudinary video URL here...">
+                        <small style="color:var(--text-muted);font-size:0.75rem;">Upload your video to Cloudinary manually, then paste the link here. This ensures the best quality and speed!</small>
+                    </div>
+                    
+                    <h3 style="margin: 1.5rem 0 0.5rem 0; font-size: 1rem; color: var(--text);">Hero Stats</h3>
+                    <div class="form-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Stat 1 Value</label>
+                            <input type="text" id="home_stat1_val" class="form-control" placeholder="5000+">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 1 Label</label>
+                            <input type="text" id="home_stat1_lbl" class="form-control" placeholder="MT Capacity">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 2 Value</label>
+                            <input type="text" id="home_stat2_val" class="form-control" placeholder="-2°C">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 2 Label</label>
+                            <input type="text" id="home_stat2_lbl" class="form-control" placeholder="Precision">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 3 Value</label>
+                            <input type="text" id="home_stat3_val" class="form-control" placeholder="17yr">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 3 Label</label>
+                            <input type="text" id="home_stat3_lbl" class="form-control" placeholder="Experience">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 4 Value</label>
+                            <input type="text" id="home_stat4_val" class="form-control" placeholder="24/7">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stat 4 Label</label>
+                            <input type="text" id="home_stat4_lbl" class="form-control" placeholder="Support">
+                        </div>
+                    </div>
+
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Homepage</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>Contact Information</h2></div>
+            <div class="settings-body">
+                <form id="form-contact">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Primary Phone</label>
+                            <input type="text" id="contact_phone1" class="form-control" placeholder="+91 98765 43210">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Secondary Phone</label>
+                            <input type="text" id="contact_phone2" class="form-control" placeholder="+91 98765 43211">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" id="contact_email" class="form-control" placeholder="info@nundreshcoldstore.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Address</label>
+                            <input type="text" id="contact_address" class="form-control" placeholder="Nundresh Village, Kashmir">
+                        </div>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Contact Info</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- SEO Settings -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>SEO Settings</h2></div>
+            <div class="settings-body">
+                <form id="form-seo">
+                    <div class="form-group">
+                        <label class="form-label">Website Meta Title</label>
+                        <input type="text" id="seo_title" class="form-control" placeholder="Nundresh Cold Store - Premium Storage in Kashmir">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Website Meta Description</label>
+                        <textarea id="seo_desc" class="form-control" placeholder="Brief description for search engines..."></textarea>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save SEO Settings</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>Social Media Links</h2></div>
+            <div class="settings-body">
+                <form id="form-social">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Facebook URL</label>
+                            <input type="url" id="social_fb" class="form-control" placeholder="https://facebook.com/...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Instagram URL</label>
+                            <input type="url" id="social_ig" class="form-control" placeholder="https://instagram.com/...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">WhatsApp Number</label>
+                            <input type="text" id="social_wa" class="form-control" placeholder="919876543210 (with country code, no +)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">YouTube URL</label>
+                            <input type="url" id="social_yt" class="form-control" placeholder="https://youtube.com/...">
+                        </div>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Social Links</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>Footer Management</h2></div>
+            <div class="settings-body">
+                <form id="form-footer">
+                    <div class="form-group">
+                        <label class="form-label">Footer Tagline</label>
+                        <input type="text" id="footer_tagline" class="form-control" placeholder="Preserving quality since 2008.">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Copyright Text</label>
+                        <input type="text" id="footer_copyright" class="form-control" placeholder="© 2024 Nundresh Cold Store. All rights reserved.">
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Footer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>Featured Testimonial</h2></div>
+            <div class="settings-body">
+                <form id="form-testi">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Customer Name</label>
+                            <input type="text" id="testi_name" class="form-control" placeholder="Jane Doe">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Company / Location</label>
+                            <input type="text" id="testi_company" class="form-control" placeholder="Apple Orchards Ltd.">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Quote</label>
+                        <textarea id="testi_quote" class="form-control" placeholder="Their service is unparalleled..."></textarea>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Testimonial</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="module">
+        import { db, doc, getDoc, setDoc, storage, ref, uploadBytesResumable, getDownloadURL } from './js/firebase-config.js';
+        import { initAuth, setupLogout } from './js/auth.js';
+
+        const CLOUDINARY_CLOUD_NAME = 'dc9fwyzq2';
+        const CLOUDINARY_UPLOAD_PRESET = 'g2aelsre';
+
+        function safeCreateIcons() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.warn('Lucide icons not loaded');
+            }
+        }
+
+        safeCreateIcons();
+        document.getElementById('mobile-nav-toggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+
+        function showToast(message, isError = false) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${isError ? 'error' : ''}`;
+            toast.innerHTML = `<i data-lucide="${isError ? 'alert-circle' : 'check-circle'}" style="color:${isError ? 'var(--danger)' : 'var(--success)'};"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            safeCreateIcons();
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        function setSaving(btn, label) {
+            btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;"></div> Saving...';
+            btn.disabled = true;
+            return () => { btn.innerHTML = `<i data-lucide="save"></i> ${label}`; btn.disabled = false; safeCreateIcons(); };
+        }
+
+        async function init() {
+            try {
+                const user = await initAuth(true);
+                if (!user) return;
+                setupLogout();
+
+                const load = async (path, fields) => {
+                    const d = await getDoc(doc(db, ...path));
+                    if (d.exists()) { const data = d.data(); fields.forEach(([id, key]) => { const el = document.getElementById(id); if (el) el.value = data[key] || ''; }); }
+                };
+
+                await load(['content', 'home'], [
+                    ['home_tag','tag'],
+                    ['home_title1','title1'],
+                    ['home_title2','title2'],
+                    ['home_subtitle','subtitle'],
+                    ['home_desc','description'],
+                    ['home_video_url','video_url'],
+                    ['home_stat1_val','stat1_val'],
+                    ['home_stat1_lbl','stat1_lbl'],
+                    ['home_stat2_val','stat2_val'],
+                    ['home_stat2_lbl','stat2_lbl'],
+                    ['home_stat3_val','stat3_val'],
+                    ['home_stat3_lbl','stat3_lbl'],
+                    ['home_stat4_val','stat4_val'],
+                    ['home_stat4_lbl','stat4_lbl']
+                ]);
+                await load(['content', 'contact'], [['contact_phone1','phone1'],['contact_phone2','phone2'],['contact_email','email'],['contact_address','address']]);
+                await load(['content', 'seo'], [['seo_title','title'],['seo_desc','description']]);
+                await load(['content', 'social'], [['social_fb','facebook'],['social_ig','instagram'],['social_wa','whatsapp'],['social_yt','youtube']]);
+                await load(['content', 'footer'], [['footer_tagline','tagline'],['footer_copyright','copyright']]);
+                await load(['content', 'testimonial'], [['testi_name','name'],['testi_company','company'],['testi_quote','quote']]);
+
+            } catch (err) {
+                console.error('Error loading content:', err);
+                showToast('Failed to load content — check Firestore rules', true);
+            } finally {
+                document.getElementById('page-loader').classList.remove('show');
+            }
+        }
+
+        function makeForm(id, docPath, getData, label) {
+            document.getElementById(id).addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const restore = setSaving(e.target.querySelector('button[type="submit"]'), label);
+                try {
+                    await setDoc(doc(db, ...docPath), { ...getData(), updatedAt: new Date() }, { merge: true });
+                    showToast(`${label} saved successfully`);
+                } catch (err) { console.error(err); showToast(`Failed to save ${label}`, true); }
+                restore();
+            });
+        }
+
+        makeForm('form-home', ['content', 'home'], () => ({
+            tag: document.getElementById('home_tag').value,
+            title1: document.getElementById('home_title1').value,
+            title2: document.getElementById('home_title2').value,
+            subtitle: document.getElementById('home_subtitle').value,
+            description: document.getElementById('home_desc').value,
+            video_url: document.getElementById('home_video_url').value,
+            stat1_val: document.getElementById('home_stat1_val').value,
+            stat1_lbl: document.getElementById('home_stat1_lbl').value,
+            stat2_val: document.getElementById('home_stat2_val').value,
+            stat2_lbl: document.getElementById('home_stat2_lbl').value,
+            stat3_val: document.getElementById('home_stat3_val').value,
+            stat3_lbl: document.getElementById('home_stat3_lbl').value,
+            stat4_val: document.getElementById('home_stat4_val').value,
+            stat4_lbl: document.getElementById('home_stat4_lbl').value,
+        }), 'Save Homepage');
+
+        makeForm('form-contact', ['content', 'contact'], () => ({
+            phone1: document.getElementById('contact_phone1').value,
+            phone2: document.getElementById('contact_phone2').value,
+            email: document.getElementById('contact_email').value,
+            address: document.getElementById('contact_address').value,
+        }), 'Save Contact Info');
+
+        makeForm('form-seo', ['content', 'seo'], () => ({
+            title: document.getElementById('seo_title').value,
+            description: document.getElementById('seo_desc').value,
+        }), 'Save SEO Settings');
+
+        makeForm('form-social', ['content', 'social'], () => ({
+            facebook: document.getElementById('social_fb').value,
+            instagram: document.getElementById('social_ig').value,
+            whatsapp: document.getElementById('social_wa').value,
+            youtube: document.getElementById('social_yt').value,
+        }), 'Save Social Links');
+
+        makeForm('form-footer', ['content', 'footer'], () => ({
+            tagline: document.getElementById('footer_tagline').value,
+            copyright: document.getElementById('footer_copyright').value,
+        }), 'Save Footer');
+
+        makeForm('form-testi', ['content', 'testimonial'], () => ({
+            name: document.getElementById('testi_name').value,
+            company: document.getElementById('testi_company').value,
+            quote: document.getElementById('testi_quote').value,
+        }), 'Save Testimonial');
+
+        init();
+    </script>
+</body>
+</html>

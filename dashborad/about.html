@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page - Nundresh Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1rem; margin-top: 1rem; }
+        .team-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .team-card-top { display: flex; align-items: center; gap: 0.75rem; }
+        .team-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; overflow: hidden; }
+        .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .team-name { font-weight: 700; font-size: 0.95rem; }
+        .team-role { font-size: 0.75rem; color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .team-bio { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+        .team-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+        .stat-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 0.75rem; margin-top: 1rem; }
+        .stat-edit-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; }
+        .stat-edit-card label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem; text-transform: uppercase; }
+        .modal { max-height: 85vh; overflow-y: auto; }
+    </style>
+</head>
+<body>
+
+    <div id="page-loader" class="loading-overlay show"><div class="spinner"></div></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand"><div class="brand-icon">❄</div><span>Nundresh Admin</span></a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-label">Management</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="inquiries.html" class="nav-link"><i data-lucide="inbox"></i><span>Inquiries</span></a></li>
+                <li class="nav-item"><a href="content.html" class="nav-link"><i data-lucide="file-edit"></i><span>Website Content</span></a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link active"><i data-lucide="info"></i><span>About Page</span></a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link"><i data-lucide="image"></i><span>Gallery</span></a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link"><i data-lucide="package"></i><span>Services</span></a></li>
+                <li class="nav-item" style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1rem;">
+                    <a href="../index.html" class="nav-link">
+                        <i data-lucide="external-link"></i>
+                        <span>Back to Site</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-info"><div class="user-email" id="admin-user-email">loading...</div></div>
+            <button class="logout-btn" id="logout-btn"><i data-lucide="log-out"></i></button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <div><h1>About Page</h1><p>Manage all content shown on the About Us page.</p></div>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle"><i data-lucide="menu"></i></button>
+        </div>
+
+        <div class="toast-container" id="toast-container"></div>
+
+        <!-- Company Overview -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>Company Overview</h2></div>
+            <div class="settings-body">
+                <form id="form-about">
+                    <div class="form-group">
+                        <label class="form-label">Full Company Description</label>
+                        <textarea id="about_overview" class="form-control" style="min-height:120px;" placeholder="Nundresh Cold Store was established in 2008..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Our History</label>
+                        <textarea id="about_history" class="form-control" style="min-height:120px;" placeholder="Describe the journey and milestones..."></textarea>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Content</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Founders & Leadership -->
+        <div class="settings-card">
+            <div class="settings-header" style="display:flex;justify-content:space-between;align-items:center;">
+                <h2>Founders & Leadership</h2>
+                <button class="btn btn-primary btn-sm" onclick="openFounderModal()"><i data-lucide="user-plus"></i> Add Founder</button>
+            </div>
+            <div class="settings-body">
+                <div class="table-responsive">
+                    <table class="data-table" style="width:100%; border-collapse:collapse;">
+                        <thead>
+                            <tr style="text-align:left; border-bottom:2px solid var(--border);">
+                                <th style="padding:0.75rem;">Name</th>
+                                <th style="padding:0.75rem;">Role</th>
+                                <th style="padding:0.75rem;">Bio</th>
+                                <th style="padding:0.75rem;">Added By</th>
+                                <th style="padding:0.75rem;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="founders-tbody">
+                            <tr><td colspan="5" style="text-align:center; padding:1rem; color:var(--text-muted);">Loading founders...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Figures / Stats -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>Key Figures (Stats shown on About page)</h2></div>
+            <div class="settings-body">
+                <form id="form-stats">
+                    <div class="stat-row">
+                        <div class="stat-edit-card">
+                            <label>Storage Capacity</label>
+                            <input type="text" id="stat_capacity" class="form-control" placeholder="5000+ MT">
+                        </div>
+                        <div class="stat-edit-card">
+                            <label>Years in Business</label>
+                            <input type="text" id="stat_years" class="form-control" placeholder="17+ Years">
+                        </div>
+                        <div class="stat-edit-card">
+                            <label>Chambers</label>
+                            <input type="text" id="stat_chambers" class="form-control" placeholder="12 Chambers">
+                        </div>
+                        <div class="stat-edit-card">
+                            <label>Farmers Served</label>
+                            <input type="text" id="stat_farmers" class="form-control" placeholder="500+ Farmers">
+                        </div>
+                        <div class="stat-edit-card">
+                            <label>Temperature Range</label>
+                            <input type="text" id="stat_temp" class="form-control" placeholder="1–9°C">
+                        </div>
+                        <div class="stat-edit-card">
+                            <label>Uptime</label>
+                            <input type="text" id="stat_uptime" class="form-control" placeholder="99.8% Uptime">
+                        </div>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Stats</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Team / Company Roles -->
+        <div class="settings-card">
+            <div class="settings-header" style="display:flex;justify-content:space-between;align-items:center;">
+                <h2>Team & Company Roles</h2>
+                <button class="btn btn-primary btn-sm" onclick="openTeamModal()"><i data-lucide="user-plus"></i> Add Member</button>
+            </div>
+            <div class="settings-body">
+                <div class="table-responsive">
+                    <table class="data-table" style="width:100%; border-collapse:collapse;">
+                        <thead>
+                            <tr style="text-align:left; border-bottom:2px solid var(--border);">
+                                <th style="padding:0.75rem;">Name</th>
+                                <th style="padding:0.75rem;">Role</th>
+                                <th style="padding:0.75rem;">Bio</th>
+                                <th style="padding:0.75rem;">Added By</th>
+                                <th style="padding:0.75rem;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="team-tbody">
+                            <tr><td colspan="5" style="text-align:center; padding:1rem; color:var(--text-muted);">Loading team members...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision & Mission -->
+        <div class="settings-card" style="margin-top:2rem;">
+            <div class="settings-header"><h2>Vision & Mission</h2></div>
+            <div class="settings-body">
+                <form id="form-vision">
+                    <div class="form-group">
+                        <label class="form-label">Our Vision</label>
+                        <textarea id="about_vision" class="form-control" style="min-height:80px;" placeholder="To be the leading cold chain provider..."></textarea>
+                    </div>
+                    <div class="form-group" style="margin-top:1rem;">
+                        <label class="form-label">Our Mission</label>
+                        <textarea id="about_mission" class="form-control" style="min-height:80px;" placeholder="To provide growers with the best storage science..."></textarea>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Vision & Mission</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Company Timeline (Dynamic) -->
+        <div class="settings-card" style="margin-top:2rem;">
+            <div class="settings-header" style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>Company Timeline / Milestones</h2>
+                <button type="button" class="btn btn-outline" id="btn-add-ms-row"><i data-lucide="plus"></i> Add Row</button>
+            </div>
+            <div class="settings-body">
+                <form id="form-milestones-dynamic">
+                    <div id="ms-rows-container" style="display:grid; grid-template-columns: 1fr; gap: 1rem;">
+                        <!-- Dynamic rows here -->
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1rem;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Timeline</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Our Values -->
+        <div class="settings-card" style="margin-top:2rem;">
+            <div class="settings-header"><h2>Our Values</h2></div>
+            <div class="settings-body">
+                <form id="form-values">
+                    <div class="form-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                        <!-- Value 1 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Value 1</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="val1_icon" class="form-control" placeholder="🎯" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="val1_title" class="form-control" placeholder="Precision" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Description</label>
+                            <textarea id="val1_text" class="form-control" rows="2" placeholder="Every degree matters..."></textarea>
+                        </div>
+                        <!-- Value 2 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Value 2</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="val2_icon" class="form-control" placeholder="🤝" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="val2_title" class="form-control" placeholder="Trust" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Description</label>
+                            <textarea id="val2_text" class="form-control" rows="2" placeholder="Growers entrust us..."></textarea>
+                        </div>
+                        <!-- Value 3 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Value 3</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="val3_icon" class="form-control" placeholder="🌱" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="val3_title" class="form-control" placeholder="Community" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Description</label>
+                            <textarea id="val3_text" class="form-control" rows="2" placeholder="We are from Kashmir..."></textarea>
+                        </div>
+                        <!-- Value 4 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Value 4</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="val4_icon" class="form-control" placeholder="🔬" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="val4_title" class="form-control" placeholder="Innovation" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Description</label>
+                            <textarea id="val4_text" class="form-control" rows="2" placeholder="Continuous investment..."></textarea>
+                        </div>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1.5rem;display:flex;justify-content:flex-end;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Values</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Compliance & Quality -->
+        <div class="settings-card" style="margin-top:2rem;">
+            <div class="settings-header"><h2>Compliance & Quality (Certifications)</h2></div>
+            <div class="settings-body">
+                <form id="form-certs">
+                    <div class="form-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                        <!-- Cert 1 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Cert 1</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="cert1_icon" class="form-control" placeholder="📜" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Label</label>
+                            <input type="text" id="cert1_lbl" class="form-control" placeholder="Certification" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="cert1_title" class="form-control" placeholder="FSSAI Licensed">
+                        </div>
+                        <!-- Cert 2 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Cert 2</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="cert2_icon" class="form-control" placeholder="🏛️" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Label</label>
+                            <input type="text" id="cert2_lbl" class="form-control" placeholder="Government" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="cert2_title" class="form-control" placeholder="J&K Govt. Registered">
+                        </div>
+                        <!-- Cert 3 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Cert 3</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="cert3_icon" class="form-control" placeholder="🌿" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Label</label>
+                            <input type="text" id="cert3_lbl" class="form-control" placeholder="Quality" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="cert3_title" class="form-control" placeholder="ISO 22000 Aligned">
+                        </div>
+                        <!-- Cert 4 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Cert 4</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="cert4_icon" class="form-control" placeholder="🔋" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Label</label>
+                            <input type="text" id="cert4_lbl" class="form-control" placeholder="Power" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="cert4_title" class="form-control" placeholder="100% Backup Power">
+                        </div>
+                        <!-- Cert 5 -->
+                        <div class="form-group" style="border:1px solid var(--border); padding:1rem; border-radius:8px;">
+                            <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--primary);">Cert 5</h3>
+                            <label class="form-label">Icon (Emoji)</label>
+                            <input type="text" id="cert5_icon" class="form-control" placeholder="🔒" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Label</label>
+                            <input type="text" id="cert5_lbl" class="form-control" placeholder="Security" style="margin-bottom:0.5rem;">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="cert5_title" class="form-control" placeholder="24/7 Surveillance">
+                        </div>
+                    </div>
+                    <div class="settings-footer" style="padding:0;border:none;margin-top:1.5rem;display:flex;justify-content:flex-end;">
+                        <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> Save Compliance Info</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Founder Modal -->
+    <div class="modal-backdrop" id="founder-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="founder-modal-title">Add Founder / Leader</h3>
+                <button class="modal-close" onclick="closeFounderModal()">&times;</button>
+            </div>
+            <form id="founder-form">
+                <div class="modal-body">
+                    <input type="hidden" id="founder_id">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" id="founder_name_input" class="form-control" required placeholder="e.g. Mr. Ghulam Nabi Nundresh">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Role / Title *</label>
+                            <input type="text" id="founder_role_input" class="form-control" required placeholder="e.g. Founder & Managing Director">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bio / Biography</label>
+                        <textarea id="founder_bio_input" class="form-control" rows="4" placeholder="Describe the founder's vision and background..."></textarea>
+                    </div>
+                    <div class="form-grid" style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" id="founder_phone" class="form-control" placeholder="e.g. +91 98765 43210">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" id="founder_email" class="form-control" placeholder="e.g. info@nundresh.com">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:1rem;">
+                        <label class="form-label">WhatsApp Number</label>
+                        <input type="text" id="founder_whatsapp" class="form-control" placeholder="e.g. 919876543210 (with country code, no +)">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Photo</label>
+                        <div style="display:flex;gap:0.5rem;">
+                            <input type="url" id="founder_photo_input" class="form-control" placeholder="https://... or upload ->">
+                            <input type="file" id="founder_photo_file" style="display:none;" accept="image/*">
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('founder_photo_file').click()">Upload</button>
+                        </div>
+                        <small id="founder-upload-status-text" style="color:var(--text-muted);font-size:0.75rem;"></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeFounderModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="founder-save-btn">Save Founder</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Team Modal -->
+    <div class="modal-backdrop" id="team-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="team-modal-title">Add Team Member</h3>
+                <button class="modal-close" onclick="closeTeamModal()">&times;</button>
+            </div>
+            <form id="team-form">
+                <div class="modal-body">
+                    <input type="hidden" id="team_id">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" id="team_name" class="form-control" required placeholder="e.g. Abdul Rashid">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Role / Title *</label>
+                            <input type="text" id="team_role" class="form-control" required placeholder="e.g. Founder & CEO">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bio / Description</label>
+                        <textarea id="team_bio" class="form-control" rows="3" placeholder="Short description about this person's role..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Photo</label>
+                        <div style="display:flex;gap:0.5rem;">
+                            <input type="url" id="team_photo" class="form-control" placeholder="https://... or upload ->">
+                            <input type="file" id="team_photo_file" style="display:none;" accept="image/*">
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('team_photo_file').click()">Upload</button>
+                        </div>
+                        <small id="upload-status-text" style="color:var(--text-muted);font-size:0.75rem;"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Emoji / Icon (if no photo)</label>
+                        <input type="text" id="team_emoji" class="form-control" placeholder="👨‍💼" maxlength="4">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeTeamModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="team-save-btn">Save Member</button>
+                </div>
+            </form>
+        </div>
+    <!-- Milestone Modal -->
+    <div class="modal-backdrop" id="milestone-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="milestone-modal-title">Add Milestone</h3>
+                <button class="modal-close" onclick="closeMilestoneModal()">&times;</button>
+            </div>
+            <form id="milestone-form">
+                <div class="modal-body">
+                    <input type="hidden" id="milestone_id">
+                    <div class="form-group">
+                        <label class="form-label">Year *</label>
+                        <input type="text" id="milestone_year" class="form-control" required placeholder="e.g. 2008">
+                    </div>
+                    <div class="form-group" style="margin-top:1rem;">
+                        <label class="form-label">Description *</label>
+                        <textarea id="milestone_desc" class="form-control" rows="3" required placeholder="e.g. Established first 500 MT cold storage unit"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeMilestoneModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="milestone-save-btn">Save Milestone</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { db, doc, getDoc, getDocs, setDoc, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, updateDoc, serverTimestamp } from './js/firebase-config.js';
+        import { initAuth, setupLogout } from './js/auth.js';
+
+        const CLOUDINARY_CLOUD_NAME = 'dc9fwyzq2';
+        const CLOUDINARY_UPLOAD_PRESET = 'g2aelsre';
+
+        lucide.createIcons();
+        document.getElementById('mobile-nav-toggle').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
+
+        function showToast(message, isError = false) {
+            const c = document.getElementById('toast-container');
+            const t = document.createElement('div');
+            t.className = `toast ${isError ? 'error' : ''}`;
+            t.innerHTML = `<i data-lucide="${isError ? 'alert-circle' : 'check-circle'}" style="color:${isError ? 'var(--danger)' : 'var(--success)'};"></i><span>${message}</span>`;
+            c.appendChild(t); lucide.createIcons();
+            setTimeout(() => t.classList.add('show'), 10);
+            setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3000);
+        }
+
+        function setSaving(btn, label) {
+            btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;"></div> Saving...';
+            btn.disabled = true;
+            return () => { btn.innerHTML = `<i data-lucide="save"></i> ${label}`; btn.disabled = false; lucide.createIcons(); };
+        }
+
+        window.openTeamModal = function(id = null, name = '', role = '', bio = '', photo = '', emoji = '👤') {
+            document.getElementById('team-modal-title').textContent = id ? 'Edit Team Member' : 'Add Team Member';
+            document.getElementById('team_id').value = id || '';
+            document.getElementById('team_name').value = name;
+            document.getElementById('team_role').value = role;
+            document.getElementById('team_bio').value = bio;
+            document.getElementById('team_photo').value = photo;
+            document.getElementById('team_emoji').value = emoji;
+            document.getElementById('team-modal').classList.add('show');
+        };
+
+        window.closeTeamModal = function() {
+            document.getElementById('team-modal').classList.remove('show');
+            document.getElementById('team-form').reset();
+            document.getElementById('upload-status-text').textContent = '';
+        };
+
+        // Handle file upload
+        setTimeout(() => {
+            const fileInput = document.getElementById('team_photo_file');
+            if (fileInput) {
+                fileInput.addEventListener('change', async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    if (!file.type.startsWith('image/')) { alert('Please select an image file'); return; }
+                    
+                    const statusText = document.getElementById('upload-status-text');
+                    statusText.textContent = 'Uploading...';
+                    
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+                    formData.append('folder', 'nundresh/team');
+                    
+                    console.log('Uploading team photo to Cloudinary...');
+                    try {
+                        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        console.log('Cloudinary response status:', res.status);
+                        
+                        if (!res.ok) {
+                            const errText = await res.text();
+                            console.error('Cloudinary error:', errText);
+                            throw new Error(errText);
+                        }
+                        
+                        const data = await res.json();
+                        console.log('Cloudinary success data:', data);
+                        
+                        if (data.secure_url) {
+                            document.getElementById('team_photo').value = data.secure_url;
+                            statusText.textContent = 'Uploaded successfully!';
+                            statusText.style.color = 'var(--success)';
+                        } else {
+                            statusText.textContent = 'Upload failed.';
+                            statusText.style.color = 'var(--danger)';
+                        }
+                    } catch (err) {
+                        console.error('Upload error detail:', err);
+                        statusText.textContent = `Upload error: ${err.message || 'Unknown'}`;
+                        statusText.style.color = 'var(--danger)';
+                    }
+                });
+            }
+        }, 100);
+
+        async function init() {
+            try {
+                const user = await initAuth(true);
+                if (!user) return;
+                setupLogout();
+
+                // Load overview & history
+                const aboutDoc = await getDoc(doc(db, 'content', 'about'));
+                if (aboutDoc.exists()) {
+                    const data = aboutDoc.data();
+                    document.getElementById('about_overview').value = data.overview || '';
+                    const historyEl = document.getElementById('about_history');
+                    if (historyEl) historyEl.value = data.history || '';
+                }
+
+                // Load Vision & Mission
+                const visionDoc = await getDoc(doc(db, 'content', 'about_vision'));
+                if (visionDoc.exists()) {
+                    const data = visionDoc.data();
+                    const visionEl = document.getElementById('about_vision');
+                    const missionEl = document.getElementById('about_mission');
+                    if (visionEl) visionEl.value = data.vision || '';
+                    if (missionEl) missionEl.value = data.mission || '';
+                }
+
+                // Load Milestones (Dynamic)
+                const milestonesDoc = await getDoc(doc(db, 'content', 'about_milestones'));
+                if (milestonesDoc.exists()) {
+                    const data = milestonesDoc.data();
+                    if (data.list) {
+                        milestoneList = data.list;
+                        renderMSRows();
+                    }
+                }
+
+                // Load stats
+                const statsDoc = await getDoc(doc(db, 'content', 'about_stats'));
+                if (statsDoc.exists()) {
+                    const s = statsDoc.data();
+                    ['capacity','years','chambers','farmers','temp','uptime'].forEach(k => {
+                        const el = document.getElementById(`stat_${k}`);
+                        if (el) el.value = s[k] || '';
+                    });
+                }
+
+                // Load Values
+                const valuesDoc = await getDoc(doc(db, 'content', 'about_values'));
+                if (valuesDoc.exists()) {
+                    const v = valuesDoc.data();
+                    [1,2,3,4].forEach(i => {
+                        const iconEl = document.getElementById(`val${i}_icon`);
+                        const titleEl = document.getElementById(`val${i}_title`);
+                        const textEl = document.getElementById(`val${i}_text`);
+                        if (iconEl) iconEl.value = v[`val${i}_icon`] || '';
+                        if (titleEl) titleEl.value = v[`val${i}_title`] || '';
+                        if (textEl) textEl.value = v[`val${i}_text`] || '';
+                    });
+                }
+
+                // Load Certs
+                const certsDoc = await getDoc(doc(db, 'content', 'about_certs'));
+                if (certsDoc.exists()) {
+                    const c = certsDoc.data();
+                    [1,2,3,4,5].forEach(i => {
+                        const iconEl = document.getElementById(`cert${i}_icon`);
+                        const lblEl = document.getElementById(`cert${i}_lbl`);
+                        const titleEl = document.getElementById(`cert${i}_title`);
+                        if (iconEl) iconEl.value = c[`cert${i}_icon`] || '';
+                        if (lblEl) lblEl.value = c[`cert${i}_lbl`] || '';
+                        if (titleEl) titleEl.value = c[`cert${i}_title`] || '';
+                    });
+                }
+                if (statsDoc.exists()) {
+                    const s = statsDoc.data();
+                    ['capacity','years','chambers','farmers','temp','uptime'].forEach(k => {
+                        const el = document.getElementById(`stat_${k}`);
+                        if (el) el.value = s[k] || '';
+                    });
+                }
+
+                // Live founders
+                const founderQ = query(collection(db, 'founders'));
+                onSnapshot(founderQ, async (snap) => {
+                    const tbody = document.getElementById('founders-tbody');
+                    tbody.innerHTML = '';
+                    if (snap.empty) {
+                        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:1rem; color:var(--text-muted);">No founders added yet. Seeding default founder...</td></tr>';
+                        
+                        // Auto-seed default founder
+                        try {
+                            await addDoc(collection(db, 'founders'), {
+                                name: 'Mr. Ghulam Nabi Nundresh',
+                                role: 'Founder & Managing Director',
+                                bio: "A lifelong resident of Kashmir and a passionate advocate for the valley's apple industry, Mr. Ghulam Nabi Nundresh founded this facility with a vision to empower local growers with the same cold chain infrastructure available in global markets.\n\nHis deep relationships with growers across Sopore, Shopian, and Pulwama — combined with a keen understanding of modern cold chain logistics — have made Nundresh Cold Store synonymous with trust.",
+                                createdBy: 'System (Default)',
+                                createdAt: serverTimestamp()
+                            });
+                        } catch (err) {
+                            console.error('Failed to seed founder:', err);
+                            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:1rem; color:var(--danger);">Failed to load founders. Check Firestore rules.</td></tr>';
+                        }
+                        return;
+                    }
+                    snap.forEach(d => {
+                        const m = d.data();
+                        const id = d.id;
+                        const tr = document.createElement('tr');
+                        tr.style.borderBottom = '1px solid var(--border)';
+                        tr.innerHTML = `
+                            <td style="padding:0.75rem; font-weight:600;">${m.name}</td>
+                            <td style="padding:0.75rem; color:var(--green); font-weight:600;">${m.role}</td>
+                            <td style="padding:0.75rem; max-width:300px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${m.bio || '—'}</td>
+                            <td style="padding:0.75rem; font-size:0.8rem; color:var(--text-muted);">${m.createdBy || 'Unknown'}</td>
+                            <td style="padding:0.75rem;">
+                                <button class="btn btn-outline btn-sm edit-btn"><i data-lucide="edit-2"></i> Edit</button>
+                                <button class="btn btn-danger btn-sm delete-btn"><i data-lucide="trash-2"></i> Delete</button>
+                            </td>
+                        `;
+                        tr.querySelector('.edit-btn').addEventListener('click', () => openFounderModal(id, m.name, m.role, m.bio, m.photo, m.phone, m.email, m.whatsapp));
+                        tr.querySelector('.delete-btn').addEventListener('click', () => deleteFounder(id));
+                        tbody.appendChild(tr);
+                    });
+                    lucide.createIcons();
+                });
+
+                // Live team members
+                const q = query(collection(db, 'team'));
+                onSnapshot(q, async (snap) => {
+                    const tbody = document.getElementById('team-tbody');
+                    tbody.innerHTML = '';
+                    if (snap.empty) {
+                        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:1rem; color:var(--text-muted);">No team members yet. Seeding example member...</td></tr>';
+                        
+                        // Auto-seed default team member
+                        try {
+                            await addDoc(collection(db, 'team'), {
+                                name: 'Abdul Rashid',
+                                role: 'Operations Manager',
+                                bio: 'Oversees daily cold store operations and inventory management.',
+                                emoji: '👤',
+                                createdBy: 'System (Default)',
+                                createdAt: serverTimestamp()
+                            });
+                        } catch (err) {
+                            console.error('Failed to seed team:', err);
+                        }
+                        return;
+                    }
+                    snap.forEach(d => {
+                        const m = d.data();
+                        const id = d.id;
+                        const tr = document.createElement('tr');
+                        tr.style.borderBottom = '1px solid var(--border)';
+                        tr.innerHTML = `
+                            <td style="padding:0.75rem; font-weight:600;">${m.name}</td>
+                            <td style="padding:0.75rem; color:var(--green); font-weight:600;">${m.role}</td>
+                            <td style="padding:0.75rem; max-width:300px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${m.bio || '—'}</td>
+                            <td style="padding:0.75rem; font-size:0.8rem; color:var(--text-muted);">${m.createdBy || 'Unknown'}</td>
+                            <td style="padding:0.75rem;">
+                                <button class="btn btn-outline btn-sm edit-btn"><i data-lucide="edit-2"></i> Edit</button>
+                                <button class="btn btn-danger btn-sm delete-btn"><i data-lucide="trash-2"></i> Delete</button>
+                            </td>
+                        `;
+                        tr.querySelector('.edit-btn').addEventListener('click', () => openTeamModal(id, m.name, m.role, m.bio, m.photo, m.emoji));
+                        tr.querySelector('.delete-btn').addEventListener('click', async () => {
+                            if (confirm(`Delete "${m.name}" from the team?`)) {
+                                try { await deleteDoc(doc(db, 'team', id)); showToast('Team member deleted'); }
+                                catch (e) { showToast('Failed to delete', true); }
+                            }
+                        });
+                        tbody.appendChild(tr);
+                    });
+                    lucide.createIcons();
+                });
+
+            } catch (err) {
+                console.error('Init error:', err);
+                showToast('Failed to load — check Firestore rules', true);
+            } finally {
+                document.getElementById('page-loader').classList.remove('show');
+            }
+        }
+
+        document.getElementById('form-about').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const restore = setSaving(e.target.querySelector('button[type="submit"]'), 'Save Content');
+            try {
+                await setDoc(doc(db, 'content', 'about'), { 
+                    overview: document.getElementById('about_overview').value,
+                    history: document.getElementById('about_history').value,
+                    updatedAt: serverTimestamp() 
+                }, { merge: true });
+                showToast('Content saved');
+            } catch (err) { console.error(err); showToast('Failed to save — check Firestore rules', true); }
+            restore();
+        });
+
+        // Save Founder (Removed old handler)
+        
+        // Founder Modal Functions
+        window.openFounderModal = function(id = '', name = '', role = '', bio = '', photo = '', phone = '', email = '', whatsapp = '') {
+            document.getElementById('founder-modal-title').textContent = id ? 'Edit Founder' : 'Add Founder';
+            document.getElementById('founder_id').value = id;
+            document.getElementById('founder_name_input').value = name;
+            document.getElementById('founder_role_input').value = role;
+            document.getElementById('founder_bio_input').value = bio;
+            document.getElementById('founder_photo_input').value = photo;
+            document.getElementById('founder_phone').value = phone;
+            document.getElementById('founder_email').value = email;
+            document.getElementById('founder_whatsapp').value = whatsapp;
+            document.getElementById('founder-modal').classList.add('show');
+        };
+
+        window.closeFounderModal = function() {
+            document.getElementById('founder-modal').classList.remove('show');
+            document.getElementById('founder-form').reset();
+        };
+
+        window.deleteFounder = async function(id) {
+            if (confirm('Are you sure you want to delete this founder?')) {
+                try {
+                    await deleteDoc(doc(db, 'founders', id));
+                    showToast('Founder deleted');
+                } catch (err) { console.error(err); showToast('Error deleting founder', true); }
+            }
+        };
+
+        // Save Founder (New Handler)
+        document.getElementById('founder-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('founder-save-btn');
+            btn.textContent = 'Saving...'; btn.disabled = true;
+            const id = document.getElementById('founder_id').value;
+            const adminEmail = document.getElementById('admin-user-email').textContent;
+            const data = {
+                name: document.getElementById('founder_name_input').value,
+                role: document.getElementById('founder_role_input').value,
+                bio: document.getElementById('founder_bio_input').value,
+                photo: document.getElementById('founder_photo_input').value,
+                phone: document.getElementById('founder_phone').value,
+                email: document.getElementById('founder_email').value,
+                whatsapp: document.getElementById('founder_whatsapp').value,
+            };
+            try {
+                if (id) {
+                    await updateDoc(doc(db, 'founders', id), { ...data, updatedBy: adminEmail, updatedAt: serverTimestamp() });
+                    showToast('Founder updated');
+                } else {
+                    await addDoc(collection(db, 'founders'), { ...data, createdBy: adminEmail, createdAt: serverTimestamp() });
+                    showToast('Founder added');
+                }
+                closeFounderModal();
+            } catch (err) { console.error(err); showToast('Error saving founder', true); }
+            btn.textContent = 'Save Founder'; btn.disabled = false;
+        });
+
+        // Dynamic Milestones Logic
+        let milestoneList = [];
+
+        window.renderMSRows = function() {
+            const container = document.getElementById('ms-rows-container');
+            if (!container) return;
+            container.innerHTML = '';
+            
+            if (milestoneList.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:1rem; color:var(--text-muted);">No milestones. Click "Add Row" to add one.</div>';
+                return;
+            }
+            
+            milestoneList.forEach((m, idx) => {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.gap = '1rem';
+                div.style.alignItems = 'center';
+                div.style.borderBottom = '1px solid var(--border)';
+                div.style.paddingBottom = '1rem';
+                div.innerHTML = `
+                    <div style="width:100px;">
+                        <label class="form-label">Year</label>
+                        <input type="text" class="form-control ms-year" value="${m.year || ''}" placeholder="2008">
+                    </div>
+                    <div style="flex:1;">
+                        <label class="form-label">Description</label>
+                        <input type="text" class="form-control ms-text" value="${m.text || ''}" placeholder="Description...">
+                    </div>
+                    <button type="button" class="btn btn-outline" style="color:var(--danger); border-color:var(--danger); margin-top:1.5rem;" onclick="removeMSRow(${idx})">Delete</button>
+                `;
+                container.appendChild(div);
+            });
+        };
+
+        window.removeMSRow = function(idx) {
+            const years = document.querySelectorAll('.ms-year');
+            const texts = document.querySelectorAll('.ms-text');
+            
+            // Save current inputs before removing
+            milestoneList = [];
+            years.forEach((y, i) => {
+                milestoneList.push({ year: y.value, text: texts[i].value });
+            });
+            
+            milestoneList.splice(idx, 1);
+            renderMSRows();
+        };
+
+        document.getElementById('btn-add-ms-row').addEventListener('click', () => {
+            const years = document.querySelectorAll('.ms-year');
+            const texts = document.querySelectorAll('.ms-text');
+            
+            // Save current inputs before adding
+            milestoneList = [];
+            years.forEach((y, i) => {
+                milestoneList.push({ year: y.value, text: texts[i].value });
+            });
+            
+            milestoneList.push({ year: '', text: '' });
+            renderMSRows();
+        });
+
+        document.getElementById('form-milestones-dynamic').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const restore = setSaving(e.target.querySelector('button[type="submit"]'), 'Save Timeline');
+            
+            const years = document.querySelectorAll('.ms-year');
+            const texts = document.querySelectorAll('.ms-text');
+            const data = [];
+            
+            years.forEach((y, i) => {
+                if (y.value || texts[i].value) {
+                    data.push({ year: y.value, text: texts[i].value });
+                }
+            });
+            
+            try {
+                await setDoc(doc(db, 'content', 'about_milestones'), { list: data, updatedAt: serverTimestamp() }, { merge: true });
+                showToast('Timeline saved');
+                milestoneList = data; // Update local state
+                renderMSRows();
+            } catch (err) { console.error(err); showToast('Failed to save timeline', true); }
+            restore();
+        });
+        // Save Vision & Mission
+        document.getElementById('form-vision').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const restore = setSaving(e.target.querySelector('button[type="submit"]'), 'Save Vision & Mission');
+            try {
+                await setDoc(doc(db, 'content', 'about_vision'), {
+                    vision: document.getElementById('about_vision').value,
+                    mission: document.getElementById('about_mission').value,
+                    updatedAt: serverTimestamp()
+                }, { merge: true });
+                showToast('Vision & mission saved');
+            } catch (err) { console.error(err); showToast('Failed to save vision & mission', true); }
+            restore();
+        });
+
+        // Founder File Upload
+        setTimeout(() => {
+            const fileInput = document.getElementById('founder_photo_file');
+            const statusText = document.getElementById('founder-upload-status-text');
+            
+            if (fileInput) {
+                fileInput.addEventListener('change', async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    
+                    statusText.textContent = 'Uploading...';
+                    statusText.style.color = 'var(--primary)';
+                    
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+                    formData.append('folder', 'nundresh/founder');
+                    
+                    try {
+                        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        if (!res.ok) throw new Error(await res.text());
+                        
+                        const data = await res.json();
+                        if (data.secure_url) {
+                            document.getElementById('founder_photo_input').value = data.secure_url;
+                            statusText.textContent = 'Uploaded successfully!';
+                            statusText.style.color = 'var(--success)';
+                        }
+                    } catch (err) {
+                        console.error('Upload error:', err);
+                        statusText.textContent = `Upload error: ${err.message || 'Unknown'}`;
+                        statusText.style.color = 'var(--danger)';
+                    }
+                });
+            }
+        }, 100);
+
+        // Save Stats
+        document.getElementById('form-stats').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const restore = setSaving(e.target.querySelector('button[type="submit"]'), 'Save Stats');
+            try {
+                await setDoc(doc(db, 'content', 'about_stats'), {
+                    capacity: document.getElementById('stat_capacity').value,
+                    years: document.getElementById('stat_years').value,
+                    chambers: document.getElementById('stat_chambers').value,
+                    farmers: document.getElementById('stat_farmers').value,
+                    temp: document.getElementById('stat_temp').value,
+                    uptime: document.getElementById('stat_uptime').value,
+                    updatedAt: serverTimestamp()
+                }, { merge: true });
+                showToast('Stats saved');
+            } catch (err) { console.error(err); showToast('Failed to save stats', true); }
+            restore();
+        });
+
+        // Save Values
+        document.getElementById('form-values').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const restore = setSaving(e.target.querySelector('button[type="submit"]'), 'Save Values');
+            const data = {};
+            [1,2,3,4].forEach(i => {
+                data[`val${i}_icon`] = document.getElementById(`val${i}_icon`).value;
+                data[`val${i}_title`] = document.getElementById(`val${i}_title`).value;
+                data[`val${i}_text`] = document.getElementById(`val${i}_text`).value;
+            });
+            try {
+                await setDoc(doc(db, 'content', 'about_values'), { ...data, updatedAt: serverTimestamp() }, { merge: true });
+                showToast('Values saved');
+            } catch (err) { console.error(err); showToast('Failed to save values', true); }
+            restore();
+        });
+
+        // Save Certs
+        document.getElementById('form-certs').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const restore = setSaving(e.target.querySelector('button[type="submit"]'), 'Save Compliance Info');
+            const data = {};
+            [1,2,3,4,5].forEach(i => {
+                data[`cert${i}_icon`] = document.getElementById(`cert${i}_icon`).value;
+                data[`cert${i}_lbl`] = document.getElementById(`cert${i}_lbl`).value;
+                data[`cert${i}_title`] = document.getElementById(`cert${i}_title`).value;
+            });
+            try {
+                await setDoc(doc(db, 'content', 'about_certs'), { ...data, updatedAt: serverTimestamp() }, { merge: true });
+                showToast('Compliance info saved');
+            } catch (err) { console.error(err); showToast('Failed to save compliance info', true); }
+            restore();
+        });
+
+        // Save Team Member
+        document.getElementById('team-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('team-save-btn');
+            btn.textContent = 'Saving...'; btn.disabled = true;
+            const id = document.getElementById('team_id').value;
+            const adminEmail = document.getElementById('admin-user-email').textContent;
+            const data = {
+                name: document.getElementById('team_name').value,
+                role: document.getElementById('team_role').value,
+                bio: document.getElementById('team_bio').value,
+                photo: document.getElementById('team_photo').value,
+                emoji: document.getElementById('team_emoji').value || '👤',
+            };
+            try {
+                if (id) {
+                    await updateDoc(doc(db, 'team', id), { ...data, updatedBy: adminEmail, updatedAt: serverTimestamp() });
+                    showToast('Member updated');
+                } else {
+                    await addDoc(collection(db, 'team'), { ...data, createdBy: adminEmail, createdAt: serverTimestamp() });
+                    showToast('Member added');
+                }
+                closeTeamModal();
+            } catch (err) { 
+                console.error(err); 
+                showToast(`Failed to save member: ${err.message || 'Check Firestore rules'}`, true); 
+            }
+            btn.textContent = 'Save Member'; btn.disabled = false;
+        });
+
+        init();
+    </script>
+</body>
+</html>

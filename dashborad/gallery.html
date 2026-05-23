@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Nundresh Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .category-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .cat-tab { padding: 0.4rem 1rem; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-muted); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .cat-tab:hover, .cat-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .cat-badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.7rem; font-weight: 600; background: var(--primary-light); color: var(--primary); margin-top: 0.3rem; }
+        .progress-bar-container { width: 100%; height: 6px; background: var(--border-color); border-radius: 3px; overflow: hidden; display: none; margin-top: 1rem; }
+        .progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s; }
+        .upload-category-row { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+        .upload-category-row select { flex: 1; min-width: 200px; padding: 0.5rem 0.75rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-card); color: var(--text-main); font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+
+    <div id="page-loader" class="loading-overlay show"><div class="spinner"></div></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand"><div class="brand-icon">❄</div><span>Nundresh Admin</span></a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-label">Management</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="inquiries.html" class="nav-link"><i data-lucide="inbox"></i><span>Inquiries</span></a></li>
+                <li class="nav-item"><a href="content.html" class="nav-link"><i data-lucide="file-edit"></i><span>Website Content</span></a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link"><i data-lucide="info"></i><span>About Page</span></a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link active"><i data-lucide="image"></i><span>Gallery</span></a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link"><i data-lucide="package"></i><span>Services</span></a></li>
+                <li class="nav-item" style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1rem;">
+                    <a href="../index.html" class="nav-link">
+                        <i data-lucide="external-link"></i>
+                        <span>Back to Site</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-info"><div class="user-email" id="admin-user-email">loading...</div></div>
+            <button class="logout-btn" id="logout-btn"><i data-lucide="log-out"></i></button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <div>
+                <h1>Gallery Management</h1>
+                <p>Upload images by category — they appear in the correct section on the public gallery page.</p>
+            </div>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle"><i data-lucide="menu"></i></button>
+        </div>
+
+        <div class="toast-container" id="toast-container"></div>
+
+        <!-- Upload Zone -->
+        <div class="settings-card">
+            <div class="settings-header"><h2>Upload Images</h2></div>
+            <div class="settings-body">
+                <div class="upload-zone" id="upload-zone" style="margin-bottom:0;">
+                    <input type="file" id="file-input" accept="image/*" multiple style="display:none;">
+                    <i data-lucide="upload-cloud" class="upload-icon"></i>
+                    <h3>Drag & drop images here</h3>
+                    <p style="margin:0.5rem 0 1rem;font-size:0.875rem;">or click to browse (Max 5MB per image)</p>
+                    <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Browse Files</button>
+                </div>
+
+                <div class="upload-category-row">
+                    <label style="font-weight:600;font-size:0.875rem;white-space:nowrap;">Select Category:</label>
+                    <select id="upload-category">
+                        <option value="industry">🏭 Industry / Facility</option>
+                        <option value="apples">🍎 Apples / Produce</option>
+                        <option value="grading">⚙️ Grading Line</option>
+                        <option value="transport">🚚 Transport / Logistics</option>
+                        <option value="team">👥 Team</option>
+                        <option value="other">📦 Other Services</option>
+                    </select>
+                    <button class="btn btn-primary" id="upload-btn" onclick="triggerUpload()">
+                        <i data-lucide="upload"></i> Upload to Selected Category
+                    </button>
+                </div>
+
+                <div class="progress-bar-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div id="upload-status" style="font-size:0.875rem;margin-top:0.5rem;color:var(--primary);display:none;">Uploading...</div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="settings-card">
+            <div class="settings-header" style="display:flex;justify-content:space-between;align-items:center;">
+                <h2>Published Images</h2>
+                <span class="badge badge-gray" id="img-count">0 images</span>
+            </div>
+            <div class="settings-body">
+                <div class="category-tabs">
+                    <button class="cat-tab active" data-cat="all">All</button>
+                    <button class="cat-tab" data-cat="industry">🏭 Industry</button>
+                    <button class="cat-tab" data-cat="apples">🍎 Apples</button>
+                    <button class="cat-tab" data-cat="grading">⚙️ Grading Line</button>
+                    <button class="cat-tab" data-cat="transport">🚚 Transport</button>
+                    <button class="cat-tab" data-cat="team">👥 Team</button>
+                    <button class="cat-tab" data-cat="other">📦 Other</button>
+                </div>
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Images injected here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { db, collection, addDoc, onSnapshot, query, orderBy, doc, deleteDoc, serverTimestamp } from './js/firebase-config.js';
+        import { initAuth, setupLogout } from './js/auth.js';
+
+        const CLOUDINARY_CLOUD_NAME = 'dc9fwyzq2';
+        const CLOUDINARY_UPLOAD_PRESET = 'g2aelsre';
+
+        const CATEGORY_LABELS = {
+            industry: '🏭 Industry',
+            apples: '🍎 Apples',
+            grading: '⚙️ Grading',
+            transport: '🚚 Transport',
+            team: '👥 Team',
+            other: '📦 Other',
+        };
+
+        lucide.createIcons();
+        document.getElementById('mobile-nav-toggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+
+        function showToast(message, isError = false) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${isError ? 'error' : ''}`;
+            toast.innerHTML = `<i data-lucide="${isError ? 'alert-circle' : 'check-circle'}" style="color:${isError ? 'var(--danger)' : 'var(--success)'};"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            lucide.createIcons();
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        let allImages = [];
+        let activeFilter = 'all';
+
+        function renderGrid(images) {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = '';
+            const filtered = activeFilter === 'all' ? images : images.filter(i => i.category === activeFilter);
+            document.getElementById('img-count').textContent = `${filtered.length} image${filtered.length !== 1 ? 's' : ''}`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><p>No images in this category yet.</p></div>';
+                return;
+            }
+
+            filtered.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'gallery-item';
+                const label = CATEGORY_LABELS[item.category] || '📦 Other';
+                el.innerHTML = `
+                    <img src="${item.url}" alt="Gallery Image" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="cat-badge">${label}</div>
+                        <div style="font-size:0.7rem; color:rgba(255,255,255,0.8); margin-top:4px;">Added by: ${item.createdBy || 'Unknown'}</div>
+                        <button class="btn btn-danger btn-sm delete-btn" data-id="${item.id}" style="margin-top:0.5rem;">
+                            <i data-lucide="trash-2"></i> Delete
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(el);
+            });
+
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => deleteImage(btn.dataset.id));
+            });
+            lucide.createIcons();
+        }
+
+        // Category tab filter
+        document.querySelectorAll('.cat-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                activeFilter = tab.dataset.cat;
+                renderGrid(allImages);
+            });
+        });
+
+        async function init() {
+            try {
+                const user = await initAuth(true);
+                if (!user) return;
+                setupLogout();
+
+                const galRef = collection(db, 'gallery');
+                const q = query(galRef, orderBy('createdAt', 'desc'));
+
+                onSnapshot(q, (snapshot) => {
+                    allImages = [];
+                    snapshot.forEach(d => allImages.push({ id: d.id, ...d.data() }));
+                    renderGrid(allImages);
+                });
+            } catch (err) {
+                console.error('Error init:', err);
+                showToast('Failed to load gallery', true);
+            } finally {
+                document.getElementById('page-loader').classList.remove('show');
+            }
+        }
+
+        // Drag & drop
+        const uploadZone = document.getElementById('upload-zone');
+        const fileInput = document.getElementById('file-input');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(ev => {
+            uploadZone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); });
+        });
+        ['dragenter', 'dragover'].forEach(ev => uploadZone.addEventListener(ev, () => uploadZone.classList.add('dragover')));
+        ['dragleave', 'drop'].forEach(ev => uploadZone.addEventListener(ev, () => uploadZone.classList.remove('dragover')));
+        uploadZone.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
+        fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+        window.triggerUpload = function() {
+            if (!fileInput.files || fileInput.files.length === 0) {
+                document.getElementById('file-input').click();
+            } else {
+                handleFiles(fileInput.files);
+            }
+        };
+
+        async function handleFiles(files) {
+            if (!files || files.length === 0) return;
+
+            const category = document.getElementById('upload-category').value;
+            const progContainer = document.getElementById('progress-container');
+            const progBar = document.getElementById('progress-bar');
+            const status = document.getElementById('upload-status');
+
+            progContainer.style.display = 'block';
+            status.style.display = 'block';
+
+            let uploaded = 0;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.type.startsWith('image/')) { showToast(`${file.name} is not an image`, true); continue; }
+                if (file.size > 5 * 1024 * 1024) { showToast(`${file.name} exceeds 5MB limit`, true); continue; }
+
+                try {
+                    status.textContent = `Uploading ${i + 1} of ${files.length} to "${CATEGORY_LABELS[category]}"...`;
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+                    formData.append('folder', `nundresh/${category}`);
+
+                    const adminEmail = document.getElementById('admin-user-email').textContent;
+                    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, { method: 'POST', body: formData });
+                    if (!res.ok) throw new Error(await res.text());
+
+                    const data = await res.json();
+                    await addDoc(collection(db, 'gallery'), {
+                        url: data.secure_url,
+                        category: category,
+                        createdBy: adminEmail,
+                        createdAt: serverTimestamp()
+                    });
+
+                    progBar.style.width = `${((i + 1) / files.length) * 100}%`;
+                    uploaded++;
+                } catch (err) {
+                    console.error('Upload error', err);
+                    showToast(`Failed to upload ${file.name}`, true);
+                }
+            }
+
+            if (uploaded > 0) showToast(`✅ Uploaded ${uploaded} image(s) to ${CATEGORY_LABELS[category]}`);
+            progContainer.style.display = 'none';
+            status.style.display = 'none';
+            progBar.style.width = '0%';
+            fileInput.value = '';
+        }
+
+        async function deleteImage(id) {
+            if (!confirm('Delete this image from the gallery?')) return;
+            try {
+                await deleteDoc(doc(db, 'gallery', id));
+                showToast('Image deleted');
+            } catch (err) {
+                console.error(err);
+                showToast('Failed to delete image', true);
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

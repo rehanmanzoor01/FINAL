@@ -1,0 +1,2939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nundresh Cold Store — Premium Apple Cold Storage in Kashmir | Since 2008</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="description" content="Nundresh Cold Store: Premium industrial apple cold storage with ±0.5°C precision, 5,000+ MT capacity, and 24/7 monitoring. Grade A apples storage in Kashmir." />
+  <meta name="keywords" content="apple cold storage, Kashmir apples, controlled atmosphere storage, CA storage, cold chain, Nundresh cold store, apple preservation" />
+  <meta name="author" content="Nundresh Cold Store" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://nundreshcoldstore.com/" />
+  
+  <!-- Open Graph / Social Media Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nundreshcoldstore.com/" />
+  <meta property="og:title" content="Nundresh Cold Store — Premium Apple Cold Storage in Kashmir" />
+  <meta property="og:description" content="State-of-the-art temperature-controlled facilities. 5,000+ MT capacity. 17 years of excellence." />
+  <meta property="og:image" content="https://nundreshcoldstore.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://nundreshcoldstore.com/" />
+  <meta name="twitter:title" content="Nundresh Cold Store" />
+  <meta name="twitter:description" content="Premium cold storage for apples in Kashmir" />
+  <meta name="twitter:image" content="https://nundreshcoldstore.com/og-image.jpg" />
+  
+  <!-- Security & Standards Meta Tags -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta name="theme-color" content="#2d7a3a" />
+  
+  <!-- Resource Hints for Speed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+  <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #2d7a3a;
+      --green-light: #4caf65;
+      --green-glow: #38d058;
+      --deep: #0a1a0d;
+      --cream: #f7f4ee;
+      --muted: #6b7c6e;
+      --border: rgba(45, 122, 58, 0.18);
+      --white: #ffffff;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: #1a2e1d;
+      overflow-x: hidden;
+    }
+
+    /* Prevent layout shift and flicker until content loads */
+    .hero {
+      opacity: 1;
+      transition: opacity 0.3s ease-in;
+    }
+
+    .hero.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-content,
+    .hero-stats,
+    .scroll-indicator {
+      transition: opacity 0.3s ease-in;
+    }
+
+    .hero-content.fade-out,
+    .hero-stats.fade-out,
+    .scroll-indicator.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ═══════════════ NAV ═══════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 72px;
+      background: transparent;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(10, 26, 13, 0.92);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+    }
+
+
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      box-shadow: 0 4px 16px rgba(56, 208, 88, 0.3);
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-logo-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .nav-cta {
+      background: var(--green) !important;
+      color: white !important;
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--green-light) !important;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border: none;
+      background: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 26, 13, 0.97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 20px;
+        gap: 4px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+      }
+    }
+
+    /* ═══════════════ HERO ═══════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Real photorealistic apple orchard background via CSS + Unsplash */
+    /* ── VIDEO BACKGROUND ─────────────────────────────────────────────
+   position:absolute fills the hero section
+   object-fit:cover = always fills the frame without stretching
+   z-index:0 = sits BELOW all overlays and content
+   ────────────────────────────────────────────────────────────────── */
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      z-index: 0;
+      /* Force GPU layer for smooth playback */
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+    }
+
+    /* ── ALL OVERLAYS & CONTENT sit above the video ──────────────────── */
+    .hero-overlay-1 {
+      position: absolute;
+      inset: 0;
+      z-index: 2 !important;
+    }
+
+    .hero-overlay-2 {
+      position: absolute;
+      inset: 0;
+      z-index: 3 !important;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 4 !important;
+    }
+
+    .hero-rays {
+      position: absolute;
+      inset: 0;
+      z-index: 3 !important;
+      pointer-events: none;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 5 !important;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10 !important;
+    }
+
+    .hero-stats {
+      z-index: 10 !important;
+    }
+
+    .scroll-indicator {
+      z-index: 10 !important;
+    }
+
+    @keyframes hero-pan {
+      0% {
+        transform: scale(1.05) translate(0, 0);
+      }
+
+      100% {
+        transform: scale(1.12) translate(-1.5%, 1%);
+      }
+    }
+
+    /* Layered overlays for cinematic depth */
+    .hero-overlay-1 {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(105deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.2) 40%,
+          rgba(0, 0, 0, 0.0) 70%,
+          rgba(0, 0, 0, 0.15) 100%);
+    }
+
+    .hero-overlay-2 {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+    }
+
+    /* Subtle vignette */
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    /* ─── Hero Content ─── */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 6vw;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(22px);
+      animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    .hero-eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-glow);
+      box-shadow: 0 0 12px var(--green-glow), 0 0 24px rgba(56, 208, 88, 0.4);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        box-shadow: 0 0 12px var(--green-glow), 0 0 24px rgba(56, 208, 88, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 20px var(--green-glow), 0 0 40px rgba(56, 208, 88, 0.6);
+      }
+    }
+
+    .hero-eyebrow-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--green-glow);
+    }
+
+    .hero-eyebrow-sep {
+      width: 1px;
+      height: 14px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: white;
+      line-height: 0.93;
+      letter-spacing: -0.025em;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .hero-title .line {
+      overflow: hidden;
+      display: block;
+    }
+
+    .hero-title .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(110%);
+      animation: word-rise 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-title .w1 {
+      animation-delay: 0.45s;
+    }
+
+    .hero-title .w2 {
+      animation-delay: 0.6s;
+    }
+
+    .hero-title .w3 {
+      animation-delay: 0.75s;
+      color: var(--green-glow);
+      font-style: italic;
+    }
+
+    .hero-title .w4 {
+      animation-delay: 0.9s;
+    }
+
+    @keyframes word-rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.8vw, 1.8rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fade-up 0.9s ease 1.15s forwards;
+    }
+
+    .hero-desc {
+      font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+      color: rgba(255, 255, 255, 0.62);
+      max-width: 500px;
+      line-height: 1.85;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fade-up 0.9s ease 1.35s forwards;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fade-up 0.9s ease 1.55s forwards;
+    }
+
+    .hero-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: var(--deep);
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+      padding: 16px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+      letter-spacing: 0.01em;
+    }
+
+    .hero-btn-primary .arrow {
+      transition: transform 0.3s;
+    }
+
+    .hero-btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 56px rgba(0, 0, 0, 0.45);
+      background: var(--green-glow);
+      color: var(--deep);
+    }
+
+    .hero-btn-primary:hover .arrow {
+      transform: translate(4px, -4px);
+    }
+
+    .hero-btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: white;
+      font-weight: 600;
+      font-size: clamp(0.85rem, 1.7vw, 0.95rem);
+      padding: 16px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Stats floating bottom-right */
+    .hero-stats {
+      position: absolute;
+      bottom: 52px;
+      right: 6vw;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fade-up 0.9s ease 1.85s forwards;
+    }
+
+    @media (max-width: 768px) {
+      .hero-stats {
+        position: static;
+        margin-top: 36px;
+      }
+    }
+
+    .hero-stat {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      border-radius: 16px;
+      padding: 18px 22px;
+      text-align: center;
+      min-width: 88px;
+      transition: background 0.3s;
+    }
+
+    .hero-stat:hover {
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    .hero-stat-n {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--green-glow);
+      line-height: 1;
+    }
+
+    .hero-stat-l {
+      font-size: 0.62rem;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 5px;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fade-in 1s ease 2.5s forwards;
+    }
+
+    .scroll-indicator-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.28);
+    }
+
+    .scroll-mouse {
+      width: 22px;
+      height: 36px;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 7px;
+    }
+
+    .scroll-dot {
+      width: 3px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 2px;
+      animation: scroll-bounce 1.9s ease-in-out infinite;
+    }
+
+    @keyframes scroll-bounce {
+      0% {
+        opacity: 1;
+        transform: translateY(0)
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(13px)
+      }
+    }
+
+    /* ─── Ticker bar ─── */
+    .ticker-bar {
+      background: var(--deep);
+      border-top: 1px solid rgba(45, 122, 58, 0.25);
+      padding: 0;
+      overflow: hidden;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker-scroll 28s linear infinite;
+    }
+
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 32px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .ticker-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--green-glow);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ═══════════════ TRUST BAR ═══════════════ */
+    .trust-bar {
+      background: white;
+      border-bottom: 1px solid rgba(45, 122, 58, 0.1);
+      padding: 0 6vw;
+    }
+
+    .trust-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 22px 20px;
+      flex: 1;
+      border-right: 1px solid rgba(45, 122, 58, 0.1);
+      min-width: 180px;
+      transition: background 0.2s;
+    }
+
+    .trust-item:last-child {
+      border-right: none;
+    }
+
+    .trust-item:hover {
+      background: #f7faf7;
+    }
+
+    .trust-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .trust-text strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1a2e1d;
+    }
+
+    .trust-text span {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* ═══════════════ WHY SECTION ═══════════════ */
+    .why-section {
+      padding: 110px 6vw;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-section::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(56, 208, 88, 0.15) 0%, transparent 70%);
+      top: -100px;
+      left: -100px;
+      z-index: 0;
+      pointer-events: none;
+      animation: float-blob 10s ease-in-out infinite alternate;
+    }
+
+    .why-section::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(45, 122, 58, 0.1) 0%, transparent 70%);
+      bottom: -150px;
+      right: -150px;
+      z-index: 0;
+      pointer-events: none;
+      animation: float-blob 15s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes float-blob {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(30px, 50px) scale(1.1);
+      }
+    }
+
+    .why-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      .why-inner {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+    }
+
+    .why-vis {
+      position: relative;
+    }
+
+    .why-card-main {
+      border-radius: 28px;
+      background: linear-gradient(155deg, #071209 0%, #0d2e12 50%, #1a5228 100%);
+      padding: clamp(40px, 6vw, 60px) clamp(32px, 5vw, 52px);
+      box-shadow: 0 40px 100px rgba(45, 122, 58, 0.2), 0 0 0 1px rgba(56, 208, 88, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-card-main::after {
+      content: '';
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 208, 88, 0.1) 0%, transparent 65%);
+      right: -80px;
+      bottom: -80px;
+      pointer-events: none;
+    }
+
+    .why-big-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5rem, 12vw, 8rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+      text-shadow: 0 0 60px rgba(56, 208, 88, 0.2);
+    }
+
+    .why-big-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin: 6px 0 36px;
+    }
+
+    .why-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .why-mini-stat {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+
+    .why-mini-val {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+    }
+
+    .why-mini-lbl {
+      font-size: 0.68rem;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    .why-badge-float {
+      position: absolute;
+      bottom: -16px;
+      right: 20px;
+      background: white;
+      border-radius: 18px;
+      padding: 16px 22px;
+      box-shadow: 0 16px 56px rgba(0, 0, 0, 0.18);
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      z-index: 2;
+    }
+
+    .why-badge-icon {
+      font-size: 2rem;
+    }
+
+    .why-badge-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a2e1d;
+    }
+
+    .why-badge-text span {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .s-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .s-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: #1a2e1d;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+
+    .s-desc {
+      font-size: clamp(0.88rem, 1.8vw, 1rem);
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 500px;
+      margin-bottom: 32px;
+    }
+
+    .idiv {
+      width: 52px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+      border-radius: 2px;
+      margin: 12px 0 28px;
+    }
+
+    .idiv.c {
+      margin: 12px auto 28px;
+    }
+
+    .sh-c {
+      text-align: center;
+    }
+
+    .sh-c .s-desc {
+      margin: 0 auto;
+    }
+
+    .why-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: white;
+      border: 1px solid rgba(45, 122, 58, 0.1);
+      border-radius: 18px;
+      padding: 18px 22px;
+      box-shadow: 0 2px 14px rgba(45, 122, 58, 0.06);
+      transition: all 0.3s;
+    }
+
+    .why-row:hover {
+      transform: translateX(8px);
+      box-shadow: 0 8px 32px rgba(45, 122, 58, 0.12);
+      border-color: rgba(45, 122, 58, 0.25);
+    }
+
+    .why-row-icon {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 14px rgba(45, 122, 58, 0.25);
+    }
+
+    .why-row strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a2e1d;
+      margin-bottom: 3px;
+    }
+
+    .why-row span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════ SERVICES PREVIEW ═══════════════ */
+    .svc-preview {
+      padding: 110px 6vw;
+      background: #f0f5f0;
+    }
+
+    .svc-preview-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 56px;
+      perspective: 1600px; /* Even deeper perspective for more pronounced 3D */
+    }
+
+    @media (max-width: 900px) {
+      .svc-grid {
+        grid-template-columns: 1fr 1fr;
+        perspective: 1200px; /* Stronger perspective on tablets */
+      }
+    }
+
+    @media (max-width: 560px) {
+      .svc-grid {
+        grid-template-columns: 1fr;
+        perspective: none; /* Disable 3D on small mobiles for simplicity */
+      }
+    }
+
+    .svc-card {
+      /* Subtle radial gradient for inherent depth */
+      background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.95) 0%, white 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(45, 122, 58, 0.1);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.15); /* Deeper initial shadow */
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.7s ease, border-color 0.7s ease; /* Longer, smoother transition */
+      display: flex;
+      flex-direction: column;
+      transform-style: preserve-3d; /* Enable 3D transforms for children */
+      position: relative; /* For z-index context */
+      will-change: transform, box-shadow; /* Performance hint */
+      transform-origin: 50% 100%; /* Pivot from the bottom center */
+    }
+
+    .svc-card::before { /* Glowing border effect */
+      content: '';
+      position: absolute;
+      inset: -4px; /* Even larger inset for the glow */
+      border-radius: 28px; /* Match card border-radius + padding */
+      background: linear-gradient(45deg, var(--green-glow), var(--green-light));
+      opacity: 0.1; /* Slightly visible initially */
+      z-index: -1; /* Behind the card content */
+      transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      transform: scale(0.98); /* Slightly smaller initially */
+    }
+
+    .svc-card:hover {
+      transform: translateY(-30px) rotateX(-15deg) rotateY(10deg) scale(1.03); /* More cubic lift, tilt forward, and rotation */
+      box-shadow: 0 50px 150px rgba(0,0,0,0.5); /* Even stronger shadow on hover */
+      z-index: 10; /* Bring hovered card to front */
+    }
+
+    .svc-card:hover::before {
+      opacity: 1; /* Show glowing border on hover */
+      transform: scale(1.04); /* Expands more on hover */
+    }
+
+    .svc-top {
+      padding: clamp(28px, 5vw, 38px) clamp(24px, 4vw, 32px) clamp(22px, 4vw, 28px);
+      background: linear-gradient(155deg, #071209, #1a4a22);
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(30px); /* Push it slightly further forward */
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); /* Longer transition */
+      box-shadow: inset 0 -20px 40px rgba(0,0,0,0.2); /* Even deeper inner shadow */
+    }
+
+    .svc-card:nth-child(2) .svc-top {
+      background: linear-gradient(155deg, #0a2010, #1e6b2a);
+    }
+
+    .svc-card:nth-child(3) .svc-top {
+      background: linear-gradient(155deg, #041008, #145220);
+    }
+
+    .svc-top::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(56, 208, 88, 0.1);
+      right: -60px;
+      bottom: -60px;
+      pointer-events: none;
+    }
+
+    .svc-card:hover .svc-top {
+      transform: translateZ(70px); /* Push it even further forward on hover */
+    }
+
+    .svc-icon {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); /* Longer transition */
+    }
+
+    .svc-card:hover .svc-icon {
+      transform: scale(1.3) rotate(10deg); /* Even more pronounced icon animation */
+    }
+
+    .svc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .svc-sub {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.6;
+    }
+
+    .svc-body {
+      transform: translateZ(25px); /* Give the body more base depth */
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); /* Longer transition */
+    }
+    .svc-card:hover .svc-body { transform: translateZ(50px); } /* Push it further forward on hover */
+    .svc-body {
+      padding: clamp(22px, 4vw, 28px) clamp(24px, 4vw, 32px);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .svc-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .svc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .svc-link:hover {
+      gap: 12px;
+      color: var(--green-light);
+    }
+
+    /* ═══════════════ PROCESS ═══════════════ */
+    .process-sec {
+      padding: 110px 6vw;
+      background: white;
+    }
+
+    .process-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .process-track {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-top: 56px;
+      position: relative;
+    }
+
+    .process-track::before {
+      content: '';
+      position: absolute;
+      top: 39px;
+      left: calc(10% + 20px);
+      right: calc(10% + 20px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+      z-index: 0;
+    }
+
+    @media (max-width: 800px) {
+      .process-track {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .process-track::before {
+        display: none;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .process-track {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ps {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ps-num {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 8px 28px rgba(45, 122, 58, 0.3);
+      margin-bottom: 18px;
+      transition: transform 0.3s;
+    }
+
+    .ps:hover .ps-num {
+      transform: scale(1.1);
+    }
+
+    .ps-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #1a2e1d;
+      margin-bottom: 7px;
+    }
+
+    .ps-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ═══════════════ TESTIMONIALS ═══════════════ */
+    .testi-sec {
+      padding: 110px 6vw;
+      background: linear-gradient(155deg, #071209 0%, #0d2e12 55%, #122a16 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testi-sec::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1600&q=60&auto=format&fit=crop') center/cover;
+      opacity: 0.06;
+    }
+
+    .testi-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testi-inner .s-title {
+      color: white;
+    }
+
+    .testi-inner .s-tag {
+      color: var(--green-glow);
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 52px;
+    }
+
+    @media (max-width: 900px) {
+      .testi-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tc {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 22px;
+      padding: clamp(26px, 4vw, 34px);
+      backdrop-filter: blur(14px);
+      transition: all 0.3s;
+    }
+
+    .tc:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-6px);
+    }
+
+    .tc-q {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.8rem;
+      color: var(--green-glow);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: -6px;
+    }
+
+    .tc-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    .tc-stars {
+      color: #f0c040;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .tc-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tc-av {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .tc-name {
+      font-weight: 700;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .tc-loc {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 2px;
+    }
+
+    /* ═══════════════ CTA ═══════════════ */
+    .cta-sec {
+      padding: 120px 6vw;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-sec::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45, 122, 58, 0.07) 0%, transparent 70%);
+      right: -150px;
+      top: -150px;
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .cta-inner .s-title {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+    }
+
+    .cta-inner p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 48px;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 16px 34px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 8px 28px rgba(45, 122, 58, 0.3);
+    }
+
+    .btn-main:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(45, 122, 58, 0.44);
+    }
+
+    .btn-sec {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: transparent;
+      color: var(--green);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 16px 34px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 1.5px solid rgba(45, 122, 58, 0.25);
+    }
+
+    .btn-sec:hover {
+      border-color: var(--green);
+      background: rgba(45, 122, 58, 0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════ FOOTER ═══════════════ */
+    footer {
+      background: var(--deep);
+      color: rgba(255, 255, 255, 0.65);
+      padding: 80px 5vw 36px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px;
+      margin-bottom: 56px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer-brand .nav-logo-text {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .footer-brand .nav-logo-sub {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .footer-tagline {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.38);
+      line-height: 1.75;
+      margin-top: 18px;
+      max-width: 240px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--green-glow);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* ═══════════════ WHATSAPP FAB ═══════════════ */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+      transition: all 0.3s;
+      animation: fab-pulse 2s ease-in-out 3s infinite;
+    }
+
+    .whatsapp-fab:hover {
+      transform: scale(1.12) translateY(-3px);
+      box-shadow: 0 12px 44px rgba(37, 211, 102, 0.65);
+      animation: none;
+    }
+
+    .whatsapp-fab .tooltip {
+      position: absolute;
+      right: 72px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #25d366;
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .whatsapp-fab .tooltip::after {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-left-color: #25d366;
+    }
+
+    .whatsapp-fab:hover .tooltip {
+      opacity: 1;
+    }
+
+    @keyframes fab-pulse {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    /* ═══════════════ REVEAL ═══════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-d1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-d2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-d3 {
+      transition-delay: 0.3s;
+    }
+
+    /* Shared anims */
+    @keyframes fade-up {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fade-in {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ─── Premium Interactions ─── */
+    /* Mouse Glow Effect */
+    .glow-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(56, 208, 88, 0.15) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .glow-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Frost Trail */
+    .frost-flake {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: rgba(56, 208, 88, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      animation: flake-fade 1s forwards;
+    }
+
+    @keyframes flake-fade {
+      to {
+        opacity: 0;
+        transform: scale(2.5) translateY(10px);
+      }
+    }
+  </style>
+  <style>
+    /* CHATBOT FAB */
+    .chatbot-fab {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      z-index: 998;
+    }
+
+    .chatbot-button {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 6px 30px rgba(45, 122, 58, 0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+      animation: fab-pulse 2s ease-in-out 3.5s infinite;
+    }
+
+    .chatbot-button:hover {
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 12px 40px rgba(45, 122, 58, 0.6);
+      animation: none;
+    }
+
+    .chatbot-suggestion {
+      position: absolute;
+      right: 75px;
+      bottom: 10px;
+      background: white;
+      padding: 12px 18px;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--deep);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(10px);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(45, 122, 58, 0.1);
+      z-index: 997;
+    }
+    .chatbot-suggestion.show {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .chatbot-suggestion::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-right: 1px solid rgba(45, 122, 58, 0.1);
+      border-top: 1px solid rgba(45, 122, 58, 0.1);
+    }
+
+    .chatbot-window {
+      position: absolute;
+      bottom: 75px;
+      right: 0;
+      width: 340px;
+      height: 480px;
+      max-height: calc(100vh - 120px);
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(45, 122, 58, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px) scale(0.95);
+      transform-origin: bottom right;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .chatbot-window.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .chatbot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, var(--green), var(--deep));
+      color: white;
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bot-avatar {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .chatbot-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .close-chatbot {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    
+    .close-chatbot:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--cream);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(45, 122, 58, 0.3) transparent;
+    }
+    
+    .chatbot-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chatbot-messages::-webkit-scrollbar-thumb {
+      background-color: rgba(45, 122, 58, 0.3);
+      border-radius: 10px;
+    }
+
+    .chat-message {
+      padding: 12px 16px;
+      border-radius: 14px;
+      max-width: 85%;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      position: relative;
+      animation: msg-fade-in 0.3s ease forwards;
+    }
+    
+    @keyframes msg-fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chat-message.bot {
+      background: white;
+      color: var(--deep);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid rgba(45,122,58,0.1);
+    }
+    
+    .chat-message.bot a {
+      color: var(--green);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .chat-message.user {
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 12px rgba(45,122,58,0.2);
+    }
+
+    .chatbot-controls {
+      background: white;
+      border-top: 1px solid rgba(45, 122, 58, 0.1);
+      padding: 16px;
+    }
+
+    .chat-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chat-option-btn {
+      background: rgba(45, 122, 58, 0.05);
+      border: 1px solid rgba(45, 122, 58, 0.15);
+      color: var(--green);
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .chat-option-btn:hover {
+      background: var(--green);
+      color: white;
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .chat-input-area textarea {
+      flex: 1;
+      border: 1px solid rgba(45, 122, 58, 0.2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      resize: none;
+      min-height: 44px;
+      max-height: 100px;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #f9fbf9;
+    }
+    
+    .chat-input-area textarea:focus {
+      border-color: var(--green);
+      background: white;
+    }
+
+    .chat-input-area button {
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(45,122,58,0.2);
+    }
+    
+    .chat-input-area button:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+    }
+    
+    .chat-input-area button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Responsive adjustments for chatbot */
+    @media (max-width: 480px) {
+      .chatbot-fab {
+        bottom: 80px;
+        right: 20px;
+      }
+      .chatbot-window {
+        width: calc(100vw - 40px);
+        height: 500px;
+        right: 20px;
+        bottom: 70px;
+      }
+    }
+  </style>
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Nundresh Cold Store",
+      "url": "https://nundreshcoldstore.com",
+      "logo": "https://nundreshcoldstore.com/logo.png",
+      "description": "Premium cold storage facility for apples in Kashmir with ±0.5°C precision",
+      "foundingDate": "2008",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Nundresh Village",
+        "addressLocality": "Kashmir",
+        "addressCountry": "India"
+      },
+      "contact": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "telephone": "+91-XXXXXXXXXX",
+        "email": "info@nundreshcoldstore.com"
+      },
+      "sameAs": [
+        "https://www.facebook.com/nundreshcoldstore",
+        "https://www.instagram.com/nundreshcoldstore"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "120"
+      }
+    }
+  </script>
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Nundresh Cold Store",
+      "image": "https://nundreshcoldstore.com/og-image.jpg",
+      "description": "State-of-the-art cold storage facility for premium apple preservation",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Nundresh Village",
+        "addressLocality": "Kashmir",
+        "addressCountry": "India"
+      },
+      "telephone": "+91-XXXXXXXXXX",
+      "email": "info@nundreshcoldstore.com",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "06:00",
+        "closes": "22:00"
+      }
+    }
+  </script>
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nundreshcoldstore.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://nundreshcoldstore.com/services.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Gallery",
+          "item": "https://nundreshcoldstore.com/gallery.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "About",
+          "item": "https://nundreshcoldstore.com/about.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Contact",
+          "item": "https://nundreshcoldstore.com/contact.html"
+        }
+      ]
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-icon">❄</div>
+      <div>
+        <span class="nav-logo-text">Nundresh Cold Store</span>
+        <span class="nav-logo-sub">Kashmir · Est. 2026</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Storage</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  
+  <section class="hero" id="hero">
+    <video id="hero-video" src="https://res.cloudinary.com/dc9fwyzq2/video/upload/f_auto,q_auto:best/v1779488879/e_d_c_c_e_b_ce_a_mp__lhhq5j.mp4" autoplay muted loop playsinline preload="auto" poster="https://res.cloudinary.com/dc9fwyzq2/video/upload/f_auto,q_auto:best,so_0/v1779488879/e_d_c_c_e_b_ce_a_mp__lhhq5j.jpg" class="hero-video" style="background-color:#071209;">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay-1"></div>
+    <div class="hero-overlay-2"></div>
+    <div class="hero-vignette"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        <span class="hero-eyebrow-text" id="dyn-hero-tag">Kashmir · Established 2008</span>
+        <div class="hero-eyebrow-sep"></div>
+        <span class="hero-eyebrow-text" id="dyn-hero-tag2" style="opacity:0.55">Grade A Apple Storage</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line" id="dyn-title1-container">
+          <span class="word w1">The cold</span>&nbsp;<span class="word w2">that keeps</span>
+        </span>
+        <span class="line" id="dyn-title2-container">
+          <span class="word w3">Kashmir</span>&nbsp;<span class="word w4" style="animation-delay:0.92s">crisp.</span>
+        </span>
+      </h1>
+
+      <p class="hero-sub" id="dyn-subtitle">Engineered for Kashmir's finest apple harvest.</p>
+
+      <p class="hero-desc" id="dyn-desc">
+        Precision temperature control, managed humidity, and quiet logistics — built for growers and exporters who
+        refuse to compromise on quality.
+      </p>
+
+      <div class="hero-btns">
+        <a href="contact.html" class="hero-btn-primary">
+          Book a storage tour
+          <span class="arrow">↗</span>
+        </a>
+        <a href="services.html" class="hero-btn-outline">Our services</a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="hero-stats" id="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n" id="dyn-hero-stat1-val">5000+</div>
+        <div class="hero-stat-l" id="dyn-hero-stat1-lbl">MT Capacity</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n" id="dyn-hero-stat2-val">-2°C</div>
+        <div class="hero-stat-l" id="dyn-hero-stat2-lbl">Precision</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n" id="dyn-hero-stat3-val">17yr</div>
+        <div class="hero-stat-l" id="dyn-hero-stat3-lbl">Experience</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n" id="dyn-hero-stat4-val">24/7</div>
+        <div class="hero-stat-l" id="dyn-hero-stat4-lbl">Monitoring</div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-dot"></div>
+      </div>
+      <span class="scroll-indicator-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <!-- first set -->
+      <div class="ticker-item"><span class="ticker-dot"></span>Precision Cold Storage</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Apple Grade A Storage</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>CA Controlled Atmosphere</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Fruit Storage Facility Kashmir</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Temperature Monitoring 24/7</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Grading & Packing Services</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Export Logistics Kashmir</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Since 2008 · Est. Kashmir</div>
+      <!-- duplicate for seamless loop -->
+      <div class="ticker-item"><span class="ticker-dot"></span>Precision Cold Storage</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Apple Grade A Storage</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>CA Controlled Atmosphere</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Fruit Storage Facility Kashmir</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Temperature Monitoring 24/7</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Grading & Packing Services</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Export Logistics Kashmir</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Since 2008 · Est. Kashmir</div>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <div class="trust-icon-wrap">🌡️</div>
+        <div class="trust-text"><strong>±0.5°C Precision</strong><span>Industrial refrigeration</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">🏔️</div>
+        <div class="trust-text"><strong>Kashmir's Largest</strong><span>Apple cold store network</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">⚡</div>
+        <div class="trust-text"><strong>100% Power Backup</strong><span>Auto-switch generators</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">📦</div>
+        <div class="trust-text"><strong>5,000+ MT Capacity</strong><span>Regular & CA chambers</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-wrap">🚚</div>
+        <div class="trust-text"><strong>Logistics Support</strong><span>Pan-India distribution</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY NUNDRESH -->
+  <section class="why-section">
+    <div class="why-inner">
+      <div class="why-vis reveal">
+        <div class="why-card-main">
+          <div class="why-big-num" id="dyn-why-big-num">17</div>
+          <div class="why-big-label" id="dyn-why-big-lbl">Years of Trust in Kashmir</div>
+          <div class="why-mini-grid">
+            <div class="why-mini-stat">
+              <div class="why-mini-val" id="dyn-why-val1">5000+</div>
+              <div class="why-mini-lbl" id="dyn-why-lbl1">MT Capacity</div>
+            </div>
+            <div class="why-mini-stat">
+              <div class="why-mini-val" id="dyn-why-val2">99.8%</div>
+              <div class="why-mini-lbl" id="dyn-why-lbl2">Uptime</div>
+            </div>
+            <div class="why-mini-stat">
+              <div class="why-mini-val" id="dyn-why-val3">1–9°C</div>
+              <div class="why-mini-lbl" id="dyn-why-lbl3">Temp Range</div>
+            </div>
+            <div class="why-mini-stat">
+              <div class="why-mini-val" id="dyn-why-val4">85–95%</div>
+              <div class="why-mini-lbl" id="dyn-why-lbl4">Humidity</div>
+            </div>
+          </div>
+        </div>
+        <div class="why-badge-float">
+          <div class="why-badge-icon">🏆</div>
+          <div class="why-badge-text">
+            <strong>ISO Certified</strong>
+            <span>Quality assured storage</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="s-tag reveal">Why Nundresh</span>
+        <h2 class="s-title reveal">Built for Kashmir's<br>apple growers.</h2>
+        <div class="idiv reveal"></div>
+        <p class="s-desc reveal">We don't just store apples — we preserve livelihoods. Every chamber, every sensor,
+          every process is designed around Kashmir's unique climate, harvest cycles, and export demands.</p>
+
+        <div class="why-features">
+          <div class="why-row reveal reveal-d1">
+            <div class="why-row-icon">❄️</div>
+            <div><strong>Controlled Atmosphere (CA) Storage</strong><span>Oxygen-reduced chambers extend shelf life by
+                4–6 months — keeping apples market-fresh longer.</span></div>
+          </div>
+          <div class="why-row reveal reveal-d2">
+            <div class="why-row-icon">🌡️</div>
+            <div><strong>Precision Temperature Management</strong><span>Industrial sensors maintain ±0.5°C accuracy.
+                Real-time alerts and SMS notifications for every deviation.</span></div>
+          </div>
+          <div class="why-row reveal reveal-d3">
+            <div class="why-row-icon">📊</div>
+            <div><strong>Digital Tracking & Reporting</strong><span>Every consignment tagged, logged, and traceable.
+                Transparent condition reports on request.</span></div>
+          </div>
+          <div class="why-row reveal">
+            <div class="why-row-icon">⚡</div>
+            <div><strong>Zero Downtime Guarantee</strong><span>Dual-circuit power with auto-switching diesel backup.
+                Sub-30-second failover ensures continuous operation.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="svc-preview">
+    <div class="svc-preview-inner">
+      <div class="sh-c reveal">
+        <span class="s-tag">Our Services</span>
+        <h2 class="s-title">End-to-end apple care.</h2>
+        <div class="idiv c"></div>
+        <p class="s-desc">From harvest intake to export dispatch — every step managed with precision and care.</p>
+      </div>
+      <div class="svc-grid" id="dyn-svc-grid">
+        <!-- Services injected via Firebase -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-sec">
+    <div class="process-inner">
+      <div class="sh-c reveal">
+        <span class="s-tag">How It Works</span>
+        <h2 class="s-title">Simple. Reliable. Efficient.</h2>
+        <div class="idiv c"></div>
+      </div>
+      <div class="process-track">
+        <div class="ps reveal reveal-d1">
+          <div class="ps-num">01</div>
+          <div class="ps-title">Intake & Inspection</div>
+          <p class="ps-text">Apples received, weighed, and visually inspected. Each consignment logged with unique ID.
+          </p>
+        </div>
+        <div class="ps reveal reveal-d2">
+          <div class="ps-num">02</div>
+          <div class="ps-title">Pre-Cooling</div>
+          <p class="ps-text">Rapid field-heat removal in pre-cooling chambers before main storage placement.</p>
+        </div>
+        <div class="ps reveal reveal-d3">
+          <div class="ps-num">03</div>
+          <div class="ps-title">Chamber Storage</div>
+          <p class="ps-text">Allocated to regular or CA chamber based on variety and required storage duration.</p>
+        </div>
+        <div class="ps reveal">
+          <div class="ps-num">04</div>
+          <div class="ps-title">Monitoring</div>
+          <p class="ps-text">24/7 sensor monitoring with automated alerts and periodic condition reports.</p>
+        </div>
+        <div class="ps reveal">
+          <div class="ps-num">05</div>
+          <div class="ps-title">Dispatch</div>
+          <p class="ps-text">Grading, packing, and logistics coordination at your chosen time. Documentation ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi-sec">
+    <div class="testi-inner">
+      <div class="sh-c reveal">
+        <span class="s-tag">What Growers Say</span>
+        <h2 class="s-title" style="color:white;">Trusted by Kashmir's finest.</h2>
+        <div class="idiv c"></div>
+      </div>
+      <div class="testi-grid">
+        <div class="tc reveal reveal-d1">
+          <div class="tc-q">"</div>
+          <p class="tc-text">My Delicious apples came out of CA storage after five months looking and tasting as if
+            they'd just been picked. Nundresh is simply in a different class.</p>
+          <div class="tc-stars">★★★★★</div>
+          <div class="tc-author">
+            <div class="tc-av">🍎</div>
+            <div>
+              <div class="tc-name">Farooq Ahmad Bhat</div>
+              <div class="tc-loc">Orchard Owner · Sopore</div>
+            </div>
+          </div>
+        </div>
+        <div class="tc reveal reveal-d2">
+          <div class="tc-q">"</div>
+          <p class="tc-text" id="dyn-testi-quote">The temperature never wavered once during three months of storage. The
+            digital reports gave me full confidence to plan my exports months in advance.</p>
+          <div class="tc-stars">★★★★★</div>
+          <div class="tc-author">
+            <div class="tc-av">🌿</div>
+            <div>
+              <div class="tc-name" id="dyn-testi-name">Mohammad Yusuf Lone</div>
+              <div class="tc-loc" id="dyn-testi-company">Grower-Exporter · Shopian</div>
+            </div>
+          </div>
+        </div>
+        <div class="tc reveal reveal-d3">
+          <div class="tc-q">"</div>
+          <p class="tc-text">What separates Nundresh is the people — they genuinely care about your harvest. From intake
+            to dispatch everything is smooth, transparent, and professional.</p>
+          <div class="tc-stars">★★★★★</div>
+          <div class="tc-author">
+            <div class="tc-av">🏔️</div>
+            <div>
+              <div class="tc-name">Irfan Wani</div>
+              <div class="tc-loc">Large-Scale Grower · Pulwama</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <div class="cta-inner">
+      <span class="s-tag" style="text-align:center;display:block;">Book Your Slot</span>
+      <h2 class="s-title reveal" style="text-align:center;">Ready to secure<br>your harvest?</h2>
+      <div class="idiv c reveal"></div>
+      <p class="reveal">Season fills fast. Contact us today to confirm your storage slot, get a quote, or arrange a
+        facility tour. Our team responds within hours.</p>
+      <div class="cta-btns reveal">
+        <a href="contact.html" class="btn-main">📬 Book Storage Now</a>
+        <a href="tel:+919876543210" class="btn-sec">📞 Call Us Directly</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html" style="margin-bottom:18px;display:inline-flex;text-decoration:none;">
+          <div class="nav-logo-icon">❄</div>
+          <div><span class="nav-logo-text">Nundresh Cold Store</span><span class="nav-logo-sub">Kashmir · Est.
+              2008</span></div>
+        </a>
+        <p class="footer-tagline" id="footer-tagline">Preserving Kashmir's finest apples with industrial cold chain
+          precision since 2008.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Cold Storage</a></li>
+          <li><a href="services.html">CA Storage</a></li>
+          <li><a href="services.html">Grading & Packing</a></li>
+          <li><a href="services.html">Logistics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919876543210" id="footer-phone">+91 98765 43210</a></li>
+          <li><a href="mailto:info@nundreshcoldstore.com" id="footer-email">info@nundreshcoldstore.com</a></li>
+          <li><a href="#" id="footer-address">Nundresh, Kashmir, J&K</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span id="footer-copyright">© 2026 Nundresh Cold Store. All rights reserved.</span>
+      <span style="display:flex;align-items:center;gap:1rem;">
+        <span style="font-size:0.7rem;color:rgba(255,255,255,0.25);">Designed by Muneeb</span>
+        <span>Kashmir, India</span>
+        <a href="admin/login.html" title="Admin Login"
+          style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.25);font-size:0.7rem;text-decoration:none;transition:color 0.2s;"
+          onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Admin
+        </a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FAB -->
+  <a href="https://wa.me/919876543210?text=Hello%2C%20I%27m%20interested%20in%20cold%20storage%20at%20Nundresh%20Cold%20Store"
+    class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <span class="tooltip">Chat on WhatsApp</span>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+  <!-- CHATBOT FAB -->
+  <div class="chatbot-fab" id="chatbot-fab">
+    <div class="chatbot-suggestion" id="chatbot-suggestion">
+      Hello! I'm your assistant. Need any help? 👋
+    </div>
+    <div class="chatbot-button" id="chatbot-button" aria-label="Open Chatbot">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </div>
+    <div class="chatbot-window" id="chatbot-window">
+      <div class="chatbot-header">
+        <div class="header-info">
+          <div class="bot-avatar">❄️</div>
+          <h3>Nundresh Assistant</h3>
+        </div>
+        <button class="close-chatbot" id="close-chatbot" aria-label="Close Chat">&times;</button>
+      </div>
+      <div class="chatbot-messages" id="chatbot-messages">
+        <div class="chat-message bot">Hello! I'm your Nundresh Assistant. How can I help you today?</div>
+      </div>
+      <div class="chatbot-controls">
+        <div class="chat-options" id="chat-options">
+          <button class="chat-option-btn" data-action="services">Our Services</button>
+          <button class="chat-option-btn" data-action="book">Book Storage</button>
+          <button class="chat-option-btn" data-action="contact">Contact Info</button>
+          <button class="chat-option-btn" data-action="about">About Us</button>
+          <button class="chat-option-btn" data-action="message">Send a Message</button>
+        </div>
+        <div class="chat-input-area" id="chat-input-area" style="display:none;">
+          <textarea id="chat-message-input" placeholder="Type your message..." rows="1"></textarea>
+          <button id="send-chat-message" aria-label="Send Message">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    /* NAV */
+    const nb = document.getElementById('navbar');
+    window.addEventListener('scroll', () => nb.classList.toggle('scrolled', scrollY > 40));
+    const hbg = document.getElementById('hamburger');
+    hbg.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('open');
+      hbg.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+      document.getElementById('nav-links').classList.remove('open');
+      hbg.classList.remove('open');
+    }));
+
+    /* STATS placement */
+    function placeStats() {
+      const s = document.getElementById('hero-stats');
+      const hero = document.querySelector('.hero');
+      const content = document.querySelector('.hero-content');
+      if (!s) return;
+      if (window.innerWidth <= 768) {
+        if (s.parentElement !== content) content.appendChild(s);
+      } else {
+        if (s.parentElement !== hero) hero.appendChild(s);
+      }
+    }
+    placeStats(); window.addEventListener('resize', placeStats);
+
+    /* REVEAL */
+    const rvls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    }), { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    rvls.forEach(r => obs.observe(r));
+
+  </script>
+
+  <!-- Firebase Dynamic Content Fetcher -->
+  <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+        "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+      }
+    }
+  </script>
+  <script type="module">
+    import { initializeApp } from "firebase/app";
+    import { getFirestore, doc, getDoc, collection, getDocs, query, orderBy, enableMultiTabIndexedDbPersistence, addDoc, serverTimestamp } from "firebase/firestore";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCphPy1JaNxRhMxh2cXbOb5Hkg41d4sJ74",
+      authDomain: "nundresh-cold-store.firebaseapp.com",
+      projectId: "nundresh-cold-store",
+      storageBucket: "nundresh-cold-store.firebasestorage.app",
+      messagingSenderId: "599279861566",
+      appId: "1:599279861566:web:901716cd7a55b8703bb66f"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    enableMultiTabIndexedDbPersistence(db).catch((err) => {
+      console.warn("Firestore persistence error:", err.code);
+    });    
+
+    // Optimized video source handler
+    function updateHeroVideo(video, dataUrl, defaultUrl) {
+      if (!video) return;
+      let newUrl = dataUrl || defaultUrl;
+      
+      if (newUrl.includes('res.cloudinary.com')) {
+        // Strip any existing transformations from the URL so they don't conflict
+        newUrl = newUrl.replace(/\/upload\/(?:[a-zA-Z0-9_:,]+\/)?v(\d+)\//, '/upload/v$1/');
+
+        let options = 'f_auto,q_auto:best'; // Intelligent high-quality compression to prevent lag
+        if (window.innerWidth <= 768) { options = 'f_auto,q_auto:good,w_1080'; } 
+
+        newUrl = newUrl.replace('/upload/', `/upload/${options}/`);
+      }
+
+      const filename = newUrl.split('/').pop();
+      if (!video.src || !video.src.includes(filename)) {
+        video.src = newUrl;
+        video.load();
+      }
+      
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(e => console.log('Autoplay hint:', e));
+      }
+    }
+
+    async function loadHomeContent() {
+      try {
+        // Fetch all data in parallel to significantly reduce loading "lag"
+        const [homeDoc, contactDoc, footerDoc, testiDoc, srvSnapshot] = await Promise.all([
+          getDoc(doc(db, 'content', 'home')),
+          getDoc(doc(db, 'content', 'contact')),
+          getDoc(doc(db, 'content', 'footer')),
+          getDoc(doc(db, 'content', 'testimonial')),
+          getDocs(query(collection(db, 'services'), orderBy('createdAt', 'desc')))
+        ]);
+
+        if (homeDoc.exists()) {
+          const data = homeDoc.data();
+
+          const updateUI = (id, text) => { if (text) { const el = document.getElementById(id); if (el) el.textContent = text; } };
+
+          // Robust Title Updates (prevents "old text" flicker)
+          const setWords = (containerId, text) => {
+            const cont = document.getElementById(containerId);
+            if (!cont || !text) return;
+            cont.innerHTML = text.split(' ').map((w, i) => `<span class="word w${i+1}" style="opacity:1;transform:translateY(0)">${w}</span>`).join('&nbsp;');
+          };
+
+          setWords('dyn-title1-container', data.title1);
+          setWords('dyn-title2-container', data.title2);
+          
+          updateUI('dyn-hero-tag', data.tag);
+          updateUI('dyn-subtitle', data.subtitle);
+          updateUI('dyn-desc', data.description);
+
+          updateHeroVideo(document.getElementById('hero-video'), data.video_url, "https://res.cloudinary.com/dc9fwyzq2/video/upload/f_auto,q_auto:best/v1779488879/e_d_c_c_e_b_ce_a_mp__lhhq5j.mp4"); // Ensure default matches best quality
+
+          // Batch update stats
+          const stats = ['stat1_val', 'stat1_lbl', 'stat2_val', 'stat2_lbl', 'stat3_val', 'stat3_lbl', 'stat4_val', 'stat4_lbl'];
+          stats.forEach(k => updateUI(`dyn-hero-${k.replace('_', '-')}`, data[k]));
+
+          // Update Why Nundresh stats
+          const whyKeys = ['big_num', 'big_lbl', 'val1', 'lbl1', 'val2', 'lbl2', 'val3', 'lbl3', 'val4', 'lbl4'];
+          whyKeys.forEach(k => updateUI(`dyn-why-${k.replace('_', '-')}`, data[`why_${k}`]));
+        }
+
+        if (contactDoc.exists()) {
+          const cData = contactDoc.data();
+          const p = document.getElementById('footer-phone');
+          if (p && cData.phone1) { p.textContent = cData.phone1; p.href = `tel:${cData.phone1}`; }
+          const e = document.getElementById('footer-email');
+          if (e && cData.email) { e.textContent = cData.email; e.href = `mailto:${cData.email}`; }
+          const a = document.getElementById('footer-address');
+          if (a && cData.address) a.textContent = cData.address;
+        }
+
+        if (footerDoc.exists()) {
+          const fData = footerDoc.data();
+          const t = document.getElementById('footer-tagline');
+          if (t && fData.tagline) t.textContent = fData.tagline;
+          const c = document.getElementById('footer-copyright');
+          if (c && fData.copyright) c.textContent = fData.copyright;
+        }
+        if (testiDoc.exists()) {
+          const tData = testiDoc.data();
+          const q = document.getElementById('dyn-testi-quote');
+          if (q && tData.quote) q.textContent = tData.quote;
+          const n = document.getElementById('dyn-testi-name');
+          if (n && tData.name) n.textContent = tData.name;
+          const comp = document.getElementById('dyn-testi-company');
+          if (comp && tData.company) comp.textContent = tData.company;
+        }
+
+        const grid = document.getElementById('dyn-svc-grid');
+        if (grid && !srvSnapshot.empty) {
+          // Batch build HTML to prevent multiple reflows
+          let servicesHtml = '';
+          let delay = 1;
+          srvSnapshot.forEach(docSnap => {
+            const s = docSnap.data();
+            // We only display the first 3 on the homepage
+            if (delay > 3) return;
+
+            servicesHtml += `
+            <div class="svc-card reveal reveal-d${delay}">
+              <div class="svc-top">
+                <div class="svc-icon">${s.icon || '📦'}</div>
+                <h3 class="svc-title">${s.title || 'Untitled'}</h3>
+                <div class="svc-sub">${s.subtitle || ''}</div>
+              </div>
+              <div class="svc-body">
+                <p class="svc-desc">${s.description || 'No description'}</p>
+                <a href="services.html" class="svc-link">Learn more <span>→</span></a>
+              </div>
+            </div>`;
+            delay++;
+          });
+
+          // Single update instead of multiple innerHTML += operations
+          grid.innerHTML = servicesHtml;
+
+          // Re-observe newly added elements for reveal animation
+          const newRvls = grid.querySelectorAll('.reveal');
+          newRvls.forEach(r => obs.observe(r));
+        }
+      } catch (e) {
+        console.error('Error loading home content:', e);
+      }
+    }
+
+  // Chatbot Logic
+  const chatbotFab = document.getElementById('chatbot-fab');
+  const chatbotButton = document.getElementById('chatbot-button');
+  const chatbotWindow = document.getElementById('chatbot-window');
+  const closeChatbotBtn = document.getElementById('close-chatbot');
+  const chatbotMessages = document.getElementById('chatbot-messages');
+  const chatOptions = document.getElementById('chat-options');
+  const chatInputArea = document.getElementById('chat-input-area');
+  const chatMessageInput = document.getElementById('chat-message-input');
+  const sendChatMessageBtn = document.getElementById('send-chat-message');
+  const chatbotSuggestion = document.getElementById('chatbot-suggestion');
+
+  // Helper function to append messages to the chat messages container
+  function appendMessage(sender, text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `chat-message ${sender}`;
+    msgDiv.innerHTML = text; // Use innerHTML to allow links
+    chatbotMessages.appendChild(msgDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Scroll to bottom
+  }
+
+  // Helper function to reset chat options and input area
+  function resetChatOptions() {
+    chatOptions.style.display = 'flex';
+    chatInputArea.style.display = 'none';
+    chatMessageInput.value = '';
+  }
+
+  chatbotButton.addEventListener('click', () => {
+    // Toggle chatbot window visibility
+    chatbotWindow.classList.toggle('open');
+    if (chatbotWindow.classList.contains('open')) {
+      chatbotButton.style.animation = 'none'; // Stop pulse animation when open
+      chatbotSuggestion.classList.remove('show'); // Hide suggestion bubble
+    } else {
+      chatbotButton.style.animation = ''; // Restart animation when closed
+      // Optionally reset chat state when closing
+      // chatbotMessages.innerHTML = '<div class="chat-message bot">Hello! How can I help you today?</div>';
+      // resetChatOptions();
+    }
+  });
+
+  closeChatbotBtn.addEventListener('click', () => {
+    // Close chatbot window
+    chatbotWindow.classList.remove('open');
+    chatbotButton.style.animation = ''; // Restart animation
+    // Optionally reset chat state when closing
+    // chatbotMessages.innerHTML = '<div class="chat-message bot">Hello! How can I help you today?</div>';
+    // resetChatOptions();
+  });
+
+  chatOptions.addEventListener('click', async (e) => {
+    // Handle clicks on predefined chat options
+    if (e.target.classList.contains('chat-option-btn')) {
+      const action = e.target.dataset.action;
+      appendMessage('user', e.target.textContent); // Show user's choice
+
+      switch (action) {
+        case 'services':
+          // Fetch service titles from Firebase
+          try {
+            const srvSnapshot = await getDocs(query(collection(db, 'services'), orderBy('createdAt', 'desc')));
+            let serviceList = "We offer a range of services including:<ul>";
+            srvSnapshot.docs.slice(0, 3).forEach(doc => { // Get top 3 services
+              serviceList += `<li>${doc.data().icon || '📦'} ${doc.data().title}</li>`;
+            });
+            serviceList += "</ul>";
+            appendMessage('bot', `Great! Here are some of our key services: ${serviceList} You can explore our full range here: <a href='services.html' target='_blank'>Services Page</a>`);
+          } catch (error) {
+            console.error("Error fetching services for chatbot:", error);
+            appendMessage('bot', "We offer various cold storage solutions. Please visit our <a href='services.html' target='_blank'>Services Page</a> for more details.");
+          }
+          break;
+        case 'book':
+          appendMessage('bot', "Ready to book your storage slot? Head over to our <a href='contact.html' target='_blank'>Contact Page</a> to fill out an inquiry form or reach us directly.");
+          break;
+        case 'contact':
+          // Fetch contact info from Firebase
+          try {
+            const contactDoc = await getDoc(doc(db, 'content', 'contact'));
+            if (contactDoc.exists()) {
+              const cData = contactDoc.data();
+              appendMessage('bot', `You can reach us at 📞 ${cData.phone1 || 'N/A'} or ✉️ ${cData.email || 'N/A'}. We're located in ${cData.address || 'Kashmir'}.`);
+            } else {
+              appendMessage('bot', "You can reach us at +91 98765 43210 or info@nundreshcoldstore.com. We're located in Nundresh Village, Kashmir.");
+            }
+          } catch (error) {
+            console.error("Error fetching contact info for chatbot:", error);
+            appendMessage('bot', "You can reach us at +91 98765 43210 or info@nundreshcoldstore.com. We're located in Nundresh Village, Kashmir.");
+          }
+          break;
+        case 'about':
+          // Fetch about overview from Firebase
+          try {
+            const aboutDoc = await getDoc(doc(db, 'content', 'about'));
+            if (aboutDoc.exists() && aboutDoc.data().overview) {
+              appendMessage('bot', `Nundresh Cold Store was founded in 2008 in Kashmir. We provide state-of-the-art cold storage solutions for apples. Learn more about us here: <a href='about.html' target='_blank'>About Us Page</a>`);
+            } else {
+              appendMessage('bot', "We are Nundresh Cold Store, providing premium apple cold storage in Kashmir since 2008. Find out more on our <a href='about.html' target='_blank'>About Us Page</a>.");
+            }
+          } catch (error) {
+            console.error("Error fetching about info for chatbot:", error);
+            appendMessage('bot', "We are Nundresh Cold Store, providing premium apple cold storage in Kashmir since 2008. Find out more on our <a href='about.html' target='_blank'>About Us Page</a>.");
+          }
+          break;
+        case 'message':
+          appendMessage('bot', "Please type your message below and we'll get back to you!");
+          chatOptions.style.display = 'none';
+          chatInputArea.style.display = 'flex';
+          chatMessageInput.focus();
+          break;
+      }
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+  });
+
+  // Handle sending a free-text message
+  sendChatMessageBtn.addEventListener('click', async () => {
+    const message = chatMessageInput.value.trim();
+    if (!message) return;
+
+    appendMessage('user', message);
+    chatMessageInput.value = '';
+    sendChatMessageBtn.disabled = true; // Disable button to prevent multiple submissions
+
+    try {
+      await addDoc(collection(db, 'inquiries'), {
+        firstName: 'Chatbot User', // Placeholder, could ask for name later
+        phone: 'N/A', // Placeholder
+        email: 'N/A', // Placeholder
+        message: `(Chatbot Inquiry) ${message}`,
+        submittedAt: serverTimestamp(),
+        source: 'chatbot',
+        status: 'new'
+      });
+      appendMessage('bot', "Thanks for your message! We've received it and will get back to you shortly. You can also reach us directly via WhatsApp or phone.");
+    } catch (error) {
+      console.error("Error sending chatbot message:", error);
+      appendMessage('bot', "Oops! Something went wrong while sending your message. Please try again or contact us directly.");
+    } finally {
+      sendChatMessageBtn.disabled = false;
+      resetChatOptions(); // Go back to options after sending
+    }
+  });
+
+  // Handle Enter key for sending messages
+  chatMessageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Prevent new line
+      sendChatMessageBtn.click();
+    }
+  });
+
+    loadHomeContent();
+
+    // Automatically show suggestion bubble after 3 seconds
+    setTimeout(() => {
+      if (!chatbotWindow.classList.contains('open')) {
+        chatbotSuggestion.classList.add('show');
+      }
+    }, 3000);
+
+    document.addEventListener('mousemove', e => {
+      if (Math.random() < 0.15) {
+        const flake = document.createElement('div');
+        flake.className = 'frost-flake';
+        flake.style.left = `${(e || window.event).clientX}px`;
+        flake.style.top = `${(e || window.event).clientY}px`;
+        document.body.appendChild(flake);
+        setTimeout(() => flake.remove(), 1000);
+      }
+    });
+</script>
+</body>
+
+</html>

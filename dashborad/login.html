@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Nundresh Cold Store</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="login-body" style="
+    background-image: url('https://images.unsplash.com/photo-1579613832107-541a120891a7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+">
+    <style>
+        /* Overlay for readability */
+        .login-body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 0;
+        }
+        /* Ensure login container is above the overlay */
+        .login-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background for the card */
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+    <div class="login-container">
+        <div class="login-logo">
+            <div class="login-logo-icon">❄</div>
+            <div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;">Nundresh</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">Admin Portal</div>
+            </div>
+        </div>
+        
+        <h2 style="text-align: center; margin-bottom: 2rem;">Sign in to your account</h2>
+        
+        <div id="error-message" style="display: none; background: var(--danger-light); color: var(--danger); padding: 0.75rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.875rem; border-left: 3px solid var(--danger);"></div>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input type="email" id="email" class="form-control" placeholder="admin@nundresh.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; padding: 0.75rem;">
+                <span id="btn-text">Sign In</span>
+                <span id="btn-loader" style="display: none;">Wait...</span>
+            </button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { auth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence, onAuthStateChanged } from './js/firebase-config.js';
+        
+        // If already logged in, redirect immediately
+        onAuthStateChanged(auth, (user) => {
+            if (user) window.location.replace('index.html');
+        });
+
+        const loginForm = document.getElementById('login-form');
+        const errorMsg = document.getElementById('error-message');
+        const btnText = document.getElementById('btn-text');
+        const btnLoader = document.getElementById('btn-loader');
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
+        
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // UI Loading state
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline-block';
+            submitBtn.disabled = true;
+            errorMsg.style.display = 'none';
+            
+            try {
+                await setPersistence(auth, browserLocalPersistence);
+                await signInWithEmailAndPassword(auth, email, password);
+                // onAuthStateChanged above will fire and redirect to index.html
+            } catch (error) {
+                console.error("Login error", error);
+                let msg = "Invalid email or password. Please try again.";
+                if (error.code === 'auth/too-many-requests') msg = "Too many failed attempts. Please try again later.";
+                if (error.code === 'auth/network-request-failed') msg = "Network error. Check your internet connection.";
+                errorMsg.textContent = msg;
+                errorMsg.style.display = 'block';
+                
+                btnText.style.display = 'inline-block';
+                btnLoader.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Nundresh Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .modal { max-height: 85vh; overflow-y: auto; }
+    </style>
+</head>
+<body>
+
+    <div id="page-loader" class="loading-overlay show"><div class="spinner"></div></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand"><div class="brand-icon">❄</div><span>Nundresh Admin</span></a>
+        </div>
+        
+        <div class="nav-group">
+            <div class="nav-label">Management</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="inquiries.html" class="nav-link"><i data-lucide="inbox"></i><span>Inquiries</span></a></li>
+                <li class="nav-item"><a href="content.html" class="nav-link"><i data-lucide="file-edit"></i><span>Website Content</span></a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link"><i data-lucide="info"></i><span>About Page</span></a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link"><i data-lucide="image"></i><span>Gallery</span></a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link active"><i data-lucide="package"></i><span>Services</span></a></li>
+                <li class="nav-item" style="margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1rem;">
+                    <a href="../index.html" class="nav-link">
+                        <i data-lucide="external-link"></i>
+                        <span>Back to Site</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-info"><div class="user-email" id="admin-user-email">loading...</div></div>
+            <button class="logout-btn" id="logout-btn"><i data-lucide="log-out"></i></button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="top-bar">
+            <div>
+                <h1>Services & Products</h1>
+                <p>Manage the services offered on your website.</p>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="mobile-nav-toggle" id="mobile-nav-toggle"><i data-lucide="menu"></i></button>
+                <button class="btn btn-primary" onclick="openModal()"><i data-lucide="plus"></i> Add Service</button>
+            </div>
+        </div>
+
+        <div class="toast-container" id="toast-container"></div>
+
+        <div class="table-container">
+            <div class="table-responsive">
+                <table id="services-table">
+                    <thead>
+                        <tr>
+                            <th>Service Name</th>
+                            <th>Icon</th>
+                            <th>Short Description</th>
+                            <th>Rate</th>
+                            <th>Added By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="4" style="text-align: center;">Loading data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Modal -->
+    <div class="modal-backdrop" id="service-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Add Service</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="service-form">
+                <div class="modal-body">
+                    <input type="hidden" id="service_id">
+                    <div class="form-group">
+                        <label class="form-label">Service Title *</label>
+                        <input type="text" id="service_title" class="form-control" required placeholder="e.g. Regular Cold Storage">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Icon (Emoji)</label>
+                        <input type="text" id="service_icon" class="form-control" placeholder="e.g. 🍎 or ❄️">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Background Image</label>
+                        <div style="display:flex;gap:0.5rem;">
+                            <input type="url" id="service_image" class="form-control" placeholder="https://... or upload ->">
+                            <input type="file" id="service_image_file" style="display:none;" accept="image/*">
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('service_image_file').click()">Upload</button>
+                        </div>
+                        <small id="service-upload-status" style="color:var(--text-muted);font-size:0.75rem;"></small>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Short Subtitle</label>
+                        <input type="text" id="service_subtitle" class="form-control" placeholder="Brief description for cards">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Full Description *</label>
+                        <textarea id="service_desc" class="form-control" rows="4" required placeholder="Full details of the service..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Rate / Pricing</label>
+                        <input type="text" id="service_rate" class="form-control" placeholder="e.g. ₹2.50/kg per month or Contact for pricing">
+                        <small style="color:var(--text-muted);font-size:0.75rem;">This will be shown on the service page and in the services table.</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Key Specifications</label>
+                        <textarea id="service_specs" class="form-control" rows="3" placeholder="e.g. Temperature: 1-4°C&#10;Humidity: 90%&#10;Capacity: 1000 MT"></textarea>
+                        <small style="color:var(--text-muted);font-size:0.75rem;">Enter one specification per line.</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Storage Plans</label>
+                        <textarea id="service_plans" class="form-control" rows="3" placeholder="e.g. Short Term: 1-3 months&#10;Long Term: 6+ months"></textarea>
+                        <small style="color:var(--text-muted);font-size:0.75rem;">Describe available plans or durations.</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="save-btn">Save Service</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { db, collection, addDoc, onSnapshot, query, orderBy, doc, deleteDoc, updateDoc, serverTimestamp } from './js/firebase-config.js';
+        import { initAuth, setupLogout } from './js/auth.js';
+        
+        lucide.createIcons();
+        
+        document.getElementById('mobile-nav-toggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+
+        window.openModal = function(id = null, title = '', icon = '', subtitle = '', desc = '', rate = '', specs = '', plans = '', image = '') {
+            document.getElementById('modal-title').textContent = id ? 'Edit Service' : 'Add Service';
+            document.getElementById('service_id').value = id || '';
+            document.getElementById('service_title').value = title;
+            document.getElementById('service_icon').value = icon;
+            document.getElementById('service_subtitle').value = subtitle;
+            document.getElementById('service_desc').value = desc;
+            document.getElementById('service_rate').value = rate;
+            document.getElementById('service_image').value = image;
+            
+            // If it's a new service and specs are empty, provide amazing default specs with emojis
+            if (!id && !specs) {
+                specs = "🌡️ Temperature: 1-4°C\n💧 Humidity: 90-95%\n⚡ Power Backup: 100% Automatic\n🚨 Monitoring: 24/7 Sensor Alerts\n🏢 Chamber Type: Regular Cold / CA";
+            }
+            
+            document.getElementById('service_specs').value = specs;
+            document.getElementById('service_plans').value = plans;
+            document.getElementById('service-modal').classList.add('show');
+        };
+
+        // Handle Cloudinary Upload
+        setTimeout(() => {
+            const fileInput = document.getElementById('service_image_file');
+            if (fileInput) {
+                fileInput.addEventListener('change', async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    
+                    const statusText = document.getElementById('service-upload-status');
+                    statusText.textContent = 'Uploading...';
+                    
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('upload_preset', 'g2aelsre');
+                    formData.append('folder', 'nundresh/services');
+                    
+                    try {
+                        const res = await fetch(`https://api.cloudinary.com/v1_1/dc9fwyzq2/image/upload`, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const data = await res.json();
+                        if (data.secure_url) {
+                            document.getElementById('service_image').value = data.secure_url;
+                            statusText.textContent = 'Uploaded successfully!';
+                            statusText.style.color = 'var(--success)';
+                        }
+                    } catch (err) {
+                        console.error('Upload error:', err);
+                        statusText.textContent = 'Upload failed.';
+                        statusText.style.color = 'var(--danger)';
+                    }
+                });
+            }
+        }, 500);
+
+        window.closeModal = function() {
+            document.getElementById('service-modal').classList.remove('show');
+            document.getElementById('service-form').reset();
+        };
+
+        function showToast(message, isError = false) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${isError ? 'error' : ''}`;
+            toast.innerHTML = `<i data-lucide="${isError ? 'alert-circle' : 'check-circle'}" style="color: ${isError ? 'var(--danger)' : 'var(--success)'};"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            lucide.createIcons();
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        async function init() {
+            try {
+                const user = await initAuth(true);
+                if (!user) return;
+                setupLogout();
+                
+                const srvRef = collection(db, 'services');
+                const q = query(srvRef, orderBy('createdAt', 'desc'));
+                
+                onSnapshot(q, (snapshot) => {
+                    const tbody = document.querySelector('#services-table tbody');
+                    tbody.innerHTML = '';
+                    
+                    if (snapshot.empty) {
+                        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:3rem;">No services added yet. Seeding default services...</td></tr>';
+                        // Auto-seed default services
+                        (async () => {
+                            try {
+                                const defaults = [
+                                    {
+                                        title: "Regular Cold Storage",
+                                        icon: "❄️",
+                                        subtitle: "Precision refrigerated chambers for Kashmir's apple harvest",
+                                        description: "Our core service offers state-of-the-art temperature controlled chambers specifically calibrated for apples. Features ±0.5°C accuracy, 24/7 power backup, and active humidity management to keep your fruit crisp and fresh for months.",
+                                        rate: "₹4.50 / kg per month",
+                                        specs: "🌡️ Temperature: 1-4°C\n💧 Humidity: 90-95%\n⚡ Power Backup: 100% Automatic\n🚨 Monitoring: 24/7 Sensor Alerts\n🏢 Chamber Type: Regular Cold",
+                                        plans: "Seasonal Storage (Aug - Oct intake)\nMonthly Storage available year-round",
+                                        createdAt: serverTimestamp(),
+                                        createdBy: "System Auto-Seed"
+                                    },
+                                    {
+                                        title: "CA Storage",
+                                        icon: "🍏",
+                                        subtitle: "Oxygen-reduced atmosphere chambers for long-term fresh preservation",
+                                        description: "Controlled Atmosphere (CA) storage blocks use oxygen-reduction technology to slow down apple ripening, extending storage shelf life by up to 6 months. Ideal for strategic market timing and high-value exports.",
+                                        rate: "₹7.00 / kg per month",
+                                        specs: "🌡️ Temperature: 0-1°C\n💨 Oxygen Level: 1.5-2.0%\n🧪 CO2 Level: Under 1.0%\n⚡ Fail-safe Nitrogen generators\n🏢 Chamber Type: CA Sealed",
+                                        plans: "Extended Storage (6+ months contract required)\nBulk discounts for 50+ MT",
+                                        createdAt: serverTimestamp(),
+                                        createdBy: "System Auto-Seed"
+                                    },
+                                    {
+                                        title: "Grading & Sorting",
+                                        icon: "⚙️",
+                                        subtitle: "Automated computerized grading and packing lines",
+                                        description: "Ensure your produce commands premium prices with our computerized grading line. Automatically sorts by color, weight, and defects, followed by professional packing, custom labeling, and preparation for logistics.",
+                                        rate: "Custom Quote",
+                                        specs: "🤖 Sorting: Automated Computer Vision\n📦 Packing: Custom branded boxes\n🏷️ Labeling: Traceability Barcodes\n🚚 Load Slot: Priority dispatch",
+                                        plans: "Per-box pricing based on sorting complexity\nFull-service Pack & Store integration",
+                                        createdAt: serverTimestamp(),
+                                        createdBy: "System Auto-Seed"
+                                    }
+                                ];
+                                for (const s of defaults) {
+                                    await addDoc(srvRef, s);
+                                }
+                                showToast("Default services seeded successfully!");
+                            } catch (err) {
+                                console.error("Seeding error:", err);
+                            }
+                        })();
+                    } else {
+                        snapshot.forEach(docSnap => {
+                            const data = docSnap.data();
+                            const id = docSnap.id;
+                            
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <td style="font-weight:500;">${data.title || 'Untitled'}</td>
+                                <td style="font-size:1.5rem;">${data.icon || '📦'}</td>
+                                <td><div style="max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${data.subtitle || data.description || 'No description'}</div></td>
+                                <td><span style="font-weight:600;color:var(--primary);">${data.rate || '—'}</span></td>
+                                <td style="font-size:0.8rem;color:var(--text-muted);">${data.createdBy || 'Unknown'}</td>
+                                <td>
+                                    <button class="btn-icon edit-btn" title="Edit">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                                    </button>
+                                    <button class="btn-icon danger delete-btn" title="Delete">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                                    </button>
+                                </td>
+                            `;
+                            
+                            tr.querySelector('.edit-btn').addEventListener('click', () => {
+                                openModal(id, data.title, data.icon, data.subtitle, data.description, data.rate, data.specs || '', data.plans || '', data.image || '');
+                            });
+                            tr.querySelector('.delete-btn').addEventListener('click', async () => {
+                                if (confirm(`Delete service "${data.title}"? This cannot be undone.`)) {
+                                    try {
+                                        await deleteDoc(doc(db, 'services', id));
+                                        showToast('Service deleted');
+                                    } catch (e) {
+                                        showToast('Error deleting service', true);
+                                    }
+                                }
+                            });
+                            tbody.appendChild(tr);
+                        });
+                    }
+                });
+            } catch (err) {
+                console.error('Error initializing services:', err);
+                showToast('Failed to load services. Check console.', true);
+            } finally {
+                document.getElementById('page-loader').classList.remove('show');
+            }
+        }
+
+        document.getElementById('service-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('save-btn');
+            btn.disabled = true;
+            btn.textContent = 'Saving...';
+            
+            const id = document.getElementById('service_id').value;
+            const adminEmail = document.getElementById('admin-user-email').textContent;
+            const data = {
+                title: document.getElementById('service_title').value,
+                icon: document.getElementById('service_icon').value,
+                subtitle: document.getElementById('service_subtitle').value,
+                description: document.getElementById('service_desc').value,
+                rate: document.getElementById('service_rate').value,
+                specs: document.getElementById('service_specs').value,
+                plans: document.getElementById('service_plans').value,
+                image: document.getElementById('service_image').value,
+                updatedBy: adminEmail,
+                updatedAt: serverTimestamp()
+            };
+            
+            try {
+                if (id) {
+                    await updateDoc(doc(db, 'services', id), data);
+                    showToast('Service updated successfully');
+                } else {
+                    data.createdAt = serverTimestamp();
+                    data.createdBy = adminEmail;
+                    await addDoc(collection(db, 'services'), data);
+                    showToast('Service added successfully');
+                }
+                closeModal();
+            } catch (err) {
+                console.error(err);
+                showToast('Error saving service', true);
+            }
+            
+            btn.disabled = false;
+            btn.textContent = 'Save Service';
+        });
+
+        init();
+    </script>
+</body>
+</html>
